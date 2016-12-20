@@ -441,7 +441,7 @@ void main(int argc, char **argv)
 #ifdef	TWO_COLUMN_ENABLE	
     float T2_selevitity  = argc > 3 ? atof(argv[3])  : 0.5; 
 #endif	
-	size_t tuples        =  1000 * 1000 * 100;
+	size_t tuples        =  1000 * 1000 * 1000;
 	int b, barriers      = 3* 7;
 	pthread_barrier_t barrier[barriers];
 	for (b = 0 ; b != barriers ; ++b)

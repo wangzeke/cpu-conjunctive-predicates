@@ -70,7 +70,7 @@ inline void BitVectorBlock::SetWordUnit(WordUnit word, size_t pos){
     data_[pos] = word;
 }
 inline void BitVectorBlock::SetAvxUnit(AvxUnit avxunit, size_t start_word_pos){
-    _mm256_storeu_si256((__m256i*)(data_+start_word_pos), avxunit);
+    //_mm256_storeu_si256((__m256i*)(data_+start_word_pos), avxunit);
 }
 
 //accessors
@@ -79,7 +79,7 @@ inline WordUnit BitVectorBlock::GetWordUnit(size_t pos) const{
 }
 
 inline AvxUnit BitVectorBlock::GetAvxUnit(size_t start_word_pos) const{
-    return _mm256_lddqu_si256((__m256i*)(data_+start_word_pos));
+    //return _mm256_lddqu_si256((__m256i*)(data_+start_word_pos));
 }
 
 inline size_t BitVectorBlock::num() const{

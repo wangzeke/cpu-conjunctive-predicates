@@ -12,7 +12,9 @@
 #include    <cstdlib>
 #include    <cstring>
 
+
 #include "avx-utility.h"
+
 
 namespace byteslice{
     
@@ -157,7 +159,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
               ){
                 __builtin_prefetch(data_[0] + offset + i + kPrefetchDistance);
                 ScanKernel2<CMP, 0>(
-                        _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
+                        avx_load( (void *)(data_[0]+offset+i) ), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
                         mask_literal[0],
                         m_less,
                         m_greater,
@@ -170,7 +172,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                   ){
                     //__builtin_prefetch(data_[1] + offset + i + kPrefetchDistance);
                     ScanKernel2<CMP, 1>(
-                            _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[1]+offset+i)),
+                            avx_load( (void *)(data_[1]+offset+i) ), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[1]+offset+i)),
                             mask_literal[1],
                             m_less,
                             m_greater,
@@ -182,7 +184,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
 #endif
                       ){
                         ScanKernel2<CMP, 2>(
-                                _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[2]+offset+i)),
+                                avx_load( (void *)(data_[2]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[2]+offset+i)),
                                 mask_literal[2],
                                 m_less,
                                 m_greater,
@@ -194,7 +196,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
 #endif
                           ){
                             ScanKernel2<CMP, 3>(
-                                    _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[3]+offset+i)),
+                                    avx_load( (void *)(data_[3]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[3]+offset+i)),
                                     mask_literal[3],
                                     m_less,
                                     m_greater,
@@ -226,7 +228,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                     break;
             }
             //move mask
-            uint32_t mmask = _mm256_movemask_epi8(m_result);
+            uint32_t mmask = avx_movemask(m_result);//_mm256_movemask_epi8(m_result);
             //save in temporary bit vector
             bitvector_word |= (static_cast<WordUnit>(mmask) << i);
         }
@@ -328,8 +330,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
                 __builtin_prefetch(data_[0] + offset + i + 1024);
                 __builtin_prefetch(other_block->data_[0] + offset + i + 1024);
                 ScanKernel2<CMP, 0>(
-                        _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
-                        _mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[0]+offset+i)),
+                        avx_load( (void *)(data_[0]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
+                        avx_load( (void *)(other_block->data_[0]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[0]+offset+i)),
                         m_less,
                         m_greater,
                         m_equal);
@@ -339,8 +341,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
                     __builtin_prefetch(data_[1] + offset + i + 1024);
                     __builtin_prefetch(other_block->data_[1] + offset + i + 1024);
                     ScanKernel2<CMP, 1>(
-                            _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[1]+offset+i)),
-                            _mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[1]+offset+i)),
+                            avx_load( (void *)(data_[1]+offset+i)),              //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
+                            avx_load( (void *)(other_block->data_[1]+offset+i)), // _mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[0]+offset+i)),
                             m_less,
                             m_greater,
                             m_equal);
@@ -348,8 +350,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
                             ((OPT==Bitwise::kSet && !avx_iszero(m_equal)) 
                             || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))){
                         ScanKernel2<CMP, 2>(
-                                _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[2]+offset+i)),
-                                _mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[2]+offset+i)),
+                                avx_load( (void *)(data_[2]+offset+i)),              //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[2]+offset+i)),
+                                avx_load( (void *)(other_block->data_[2]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[2]+offset+i)),
                                 m_less,
                                 m_greater,
                                 m_equal);
@@ -357,8 +359,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
                                 ((OPT==Bitwise::kSet && !avx_iszero(m_equal)) 
                                 || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))){
                             ScanKernel2<CMP, 3>(
-                                    _mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[3]+offset+i)),
-                                    _mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[3]+offset+i)),
+                                    avx_load( (void *)(data_[3]+offset+i)),              //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[3]+offset+i)),
+                                    avx_load( (void *)(other_block->data_[3]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[3]+offset+i)),
                                     m_less,
                                     m_greater,
                                     m_equal);
@@ -390,7 +392,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
                     break;
             }
             //move mask
-            uint32_t mmask = _mm256_movemask_epi8(m_result);
+            uint32_t mmask = avx_movemask(m_result); //_mm256_movemask_epi8(m_result);
             //save in temporary bit vector
             bitvector_word |= (static_cast<WordUnit>(mmask) << i);
         }
