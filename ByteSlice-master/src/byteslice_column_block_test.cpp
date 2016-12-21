@@ -261,10 +261,7 @@ void *run(void *arg)
 
 	rand32_t *gen = rand32_init(d->seed);
 	uint32_t *original         = (uint32_t *) alloc(tuples * sizeof(uint32_t));
-#ifdef	TWO_COLUMN_ENABLE
-	float    T2_selevitity     = d->T2_selevitity;
-	uint32_t *original_1       = (uint32_t *) alloc(tuples * sizeof(uint32_t));
-#endif	
+
 	//uint64_t *compressed   = (uint64_t *) alloc(words * sizeof(uint64_t));
 	//uint32_t *decompressed = (uint32_t *) alloc(tuples * sizeof(uint32_t));
 	uint64_t *bitmap       = (uint64_t *) alloc(bitmasks * sizeof(uint64_t));
@@ -280,19 +277,11 @@ void *run(void *arg)
 	{
 
         uint32_t literal_1   = (uint32_t) ( (1-T1_selevitity) * (float)((1<<bits)-1) ); //do greater than literal...
-#ifdef	TWO_COLUMN_ENABLE
-	    uint32_t literal_2   = (uint32_t) ( T2_selevitity  * (float)((1<<bits)-1) );   //do less    than literal...
-#endif		
-
 
 		BitVectorBlock* bvblock = new BitVectorBlock(num_);
 	
     //ByteSliceColumnBlock<16>* block2 = new ByteSliceColumnBlock<16>(num_);
       ByteSliceColumnBlock<BIT_WIDTH_BYTESLICE>* block2   = new ByteSliceColumnBlock<BIT_WIDTH_BYTESLICE>(num_);
-#ifdef	TWO_COLUMN_ENABLE	  
-      ByteSliceColumnBlock<BIT_WIDTH_BYTESLICE>* block2_1 = new ByteSliceColumnBlock<BIT_WIDTH_BYTESLICE>(num_);
-#endif
-//	  pthread_barrier_wait(barrier++);
 	
 		// compress
 		uint64_t t1 = thread_time();
@@ -306,25 +295,9 @@ void *run(void *arg)
 	          	uint32_t tmp = rand32_next(gen) & ((1<<bits)-1); //tmp_cons; //rand32_next(gen) >> (32 - bits);
 	          	original[i]  = tmp; //tmp_cons; //
                  block2->SetTuple(i, tmp);
-				 
-#ifdef	TWO_COLUMN_ENABLE				 
-				tmp = rand32_next(gen) & ((1<<bits)-1); //rand32_next(gen) >> (32 - bits);
-				original_1[i] = tmp;
-                 block2_1->SetTuple(i, tmp);
-#endif				 
+				 			 
     }
-/*			 
-			//testing the data.... 
-           if (d->thread == 0)
-		   {
-             for(i=0; i < num_; i++){
-	          	//original[i]  = tmp; //tmp_cons; //
-                uint32_t tmp = block2->GetTuple(i);
-				if (original[i]  != tmp)
-                  printf("tmp = 0x%d, original[i] = 0x%x\n", tmp, original[i]);					
-             }			   
-		   }
-*/
+
 			 
 		t1 = thread_time() - t1;
 		pthread_barrier_wait(barrier++);
@@ -343,9 +316,7 @@ void *run(void *arg)
 		uint64_t t3 = thread_time();
 		
            block2->Scan(Comparator::kGreater, literal_1, bvblock, Bitwise::kSet);
-#ifdef	TWO_COLUMN_ENABLE			   
-		   block2_1->Scan(Comparator::kLess, literal_2, bvblock, Bitwise::kAnd);
-#endif		   
+	   
 		pthread_barrier_wait(barrier++);
 		t3 = thread_time() - t3;
 		
@@ -373,19 +344,15 @@ void *run(void *arg)
 		 for (size_t ii = 0; ii < num_; ii++) //
 		{
 			//size_t ii = 11;
-#ifdef	TWO_COLUMN_ENABLE				
-			bool real  = ((original[ii] > literal_1)&&(original_1[ii] < literal_2)); 
-#else
+
             bool real  = ((original[ii] > literal_1)); 
-#endif	
+	
 			bool eval  = bvblock->GetBit(ii);
             if (real !=  eval )
 			{
-#ifdef	TWO_COLUMN_ENABLE	
-		      printf("%d:  eval: %d, real: %d (%d, %d)\n", ii, eval, real, (original[ii] >= literal_1), (original_1[ii] <= literal_2));
-#else 
+
 		      printf("%d:  eval: %d, real: %d \n", ii, eval, real);
-#endif	     
+     
              break;
 			 //   return NULL;
 			}
@@ -399,13 +366,10 @@ void *run(void *arg)
 			for (size_t t = 0 ; t != d->threads ; ++t) {
 				t_sum += d->times[2][t];
 			}
-#ifdef TWO_COLUMN_ENABLE
-			printf("TWO: %2d codes, time: %6.3f, codes_per_ns: %6.3f\n", BIT_WIDTH_BYTESLICE,((double)t_sum / (double)d->threads), 
-			       (num_ * d->threads * 1.0) / ((double)t_sum / (double)d->threads) );
-#else
+
 			printf("%2d codes, time: %6.3f, codes_per_ns: %6.3f\n", BIT_WIDTH_BYTESLICE,((double)t_sum / (double)d->threads), 
 			       (num_ * d->threads * 1.0) / ((double)t_sum / (double)d->threads) );
-#endif	
+
 
 		}
 		
@@ -438,9 +402,7 @@ void main(int argc, char **argv)
 {
 	int t, threads       = argc > 1 ? atoi(argv[1]) : hardware_threads();
     float T1_selevitity  = argc > 2 ? atof(argv[2])  : 0.5; 
-#ifdef	TWO_COLUMN_ENABLE	
-    float T2_selevitity  = argc > 3 ? atof(argv[3])  : 0.5; 
-#endif	
+
 	size_t tuples        =  1000 * 1000 * 1000;
 	int b, barriers      = 3* 7;
 	pthread_barrier_t barrier[barriers];
@@ -448,11 +410,8 @@ void main(int argc, char **argv)
 		pthread_barrier_init(&barrier[b], NULL, threads);
 	srand(time(NULL));
 
-#ifdef 	TWO_COLUMN_ENABLE
-	fprintf(stderr, "Threads: %d, T1_selevitity = %f, T2_selevitity = %f\n", threads, T1_selevitity, T2_selevitity);
-#else
-	fprintf(stderr, "Threads: %d, T1_selevitity = %f\n", threads, T1_selevitity);
-#endif
+	printf("Threads: %d, T1_selevitity = %f\n", threads, T1_selevitity);
+
 	byteslice::info_t info[threads]; //
 	uint64_t times[3][threads];
 	size_t set_bits[threads];
@@ -478,9 +437,7 @@ void main(int argc, char **argv)
 		info[t].seed = rand();
 		
         info[t].T1_selevitity  = T1_selevitity;
-#ifdef	TWO_COLUMN_ENABLE			
-        info[t].T2_selevitity  = T2_selevitity;
-#endif		
+	
 		info[t].thread   = t;
 		info[t].threads  = threads;
 		info[t].barrier  = barrier;

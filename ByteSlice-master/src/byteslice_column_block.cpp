@@ -12,6 +12,7 @@
 #include    <cstdlib>
 #include    <cstring>
 
+//#define COUNTER_ENABLE
 
 #include "avx-utility.h"
 
@@ -125,7 +126,10 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
          ByteUnit byte = FLIP(static_cast<ByteUnit>(literal >> 8*(kNumBytesPerCode - 1 - byte_id)));
          mask_literal[byte_id] = avx_set1<ByteUnit>(byte);
     }
-    
+
+#ifdef COUNTER_ENABLE
+   WordUnit counter[4] = {0};
+#endif    
     //for every kNumWordBits (64) tuples
     for(size_t offset = 0, bv_word_id = 0; offset < num_tuples_; offset += kNumWordBits, bv_word_id++){
         WordUnit bitvector_word = WordUnit(0);
@@ -157,6 +161,10 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                 true
 #endif
               ){
+				  
+#ifdef COUNTER_ENABLE
+    counter[0]++;
+#endif    				  
                 __builtin_prefetch(data_[0] + offset + i + kPrefetchDistance);
                 ScanKernel2<CMP, 0>(
                         avx_load( (void *)(data_[0]+offset+i) ), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
@@ -164,12 +172,18 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                         m_less,
                         m_greater,
                         m_equal);
+  #if 0						
                 if(kNumBytesPerCode > 1
 #ifndef                 NEARLYSTOP
                         && ((OPT==Bitwise::kSet && !avx_iszero(m_equal))
                             || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))
 #endif
                   ){
+					  
+#ifdef COUNTER_ENABLE
+    counter[1]++;
+#endif 
+ 					  
                     //__builtin_prefetch(data_[1] + offset + i + kPrefetchDistance);
                     ScanKernel2<CMP, 1>(
                             avx_load( (void *)(data_[1]+offset+i) ), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[1]+offset+i)),
@@ -183,6 +197,11 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                                 || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))
 #endif
                       ){
+						  
+#ifdef COUNTER_ENABLE
+    counter[2]++;
+#endif  
+						  
                         ScanKernel2<CMP, 2>(
                                 avx_load( (void *)(data_[2]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[2]+offset+i)),
                                 mask_literal[2],
@@ -195,6 +214,10 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                                     || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))
 #endif
                           ){
+							  
+#ifdef COUNTER_ENABLE
+    counter[3]++;
+#endif  							  
                             ScanKernel2<CMP, 3>(
                                     avx_load( (void *)(data_[3]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[3]+offset+i)),
                                     mask_literal[3],
@@ -204,7 +227,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                         }
                     }
                 }
-            }
+   #endif  //for disabling the branching parts.....          
+			}
 
             AvxUnit m_result;
             switch(CMP){
@@ -247,6 +271,10 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
         }
         bvblock->SetWordUnit(x, bv_word_id);
     }
+	
+#ifdef COUNTER_ENABLE
+   printf("counter: %d, %d, %d, %d\n", counter[0], counter[1], counter[2], counter[3]); 
+#endif  	
     bvblock->ClearTail();
 }
 
