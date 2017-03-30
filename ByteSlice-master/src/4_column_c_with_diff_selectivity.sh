@@ -8,11 +8,15 @@ do
   echo "With threads:" $i >>$1
         echo "best case:" >>$1	
 				
-	    for j in 0.6 0.5 0.4 0.3 0.2 0.1 
+	    for j in 0.5 0.4 0.3 0.2 0.1 0.05 0.01 0.005 0.001
 		do
-		  echo "c selectivity:  0.8 0.7 0.9 " $j >>$1
-          ./4_byteslice_column_c_block_test.x $i $j 0.8 0.7 0.9 >result.txt
+		  echo "c selectivity:  0.5 0.5 0.5 " $j >>$1
+          ./4_byteslice_column_c_block_test.x $i $j 0.5 0.5 0.5 >result.txt
           #cat result.txt |grep "p_s_model"  >>$1
+          cat result.txt |grep "Instructions-retired"  >>$1
+          cat result.txt |grep "L3Misses"  >>$1
+          cat result.txt |grep "CyclesLostDueL3CacheMisses"  >>$1
+		  
           cat result.txt |grep "BytesReadFromMC"  >>$1
           cat result.txt |grep "BytesWrittenToMC" >>$1 
           cat result.txt |grep "codes_per_ns" >>$1
@@ -21,11 +25,15 @@ do
 		done  
 
         echo "worst_case:" >>$1		
-	    for j in  0.6 0.5 0.4 0.3 0.2 0.1 
+	    for j in  0.5 0.4 0.3 0.2 0.1 0.05 0.01 0.005 0.001
 		do
-		  echo "c selectivity:  0.9 0.7 0.8 " $j >>$1
-          ./4_byteslice_column_c_block_test.x $i  0.9 0.7 0.8 $j >result.txt
+		  echo "c selectivity:  0.5 0.5 0.5 " $j >>$1
+          ./4_byteslice_column_c_block_test.x $i 0.5 0.5 0.5 $j >result.txt
           #cat result.txt |grep "p_s_model"  >>$1
+          cat result.txt |grep "Instructions-retired"  >>$1
+          cat result.txt |grep "L3Misses"  >>$1
+          cat result.txt |grep "CyclesLostDueL3CacheMisses"  >>$1
+		  
           cat result.txt |grep "BytesReadFromMC"  >>$1
           cat result.txt |grep "BytesWrittenToMC" >>$1 
           cat result.txt |grep "codes_per_ns" >>$1

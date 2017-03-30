@@ -83,7 +83,7 @@ struct Monitor_Event inst_Monitor_Event = {
 		"MIC_2",
 		"MIC_3",
 	},
-    8	 
+    0	 
 };
 
 
@@ -306,14 +306,14 @@ for (uint32_t ii = 0; ii < 4; ii++)
                                             data_3, literal_3, kNumBytesPerCode_3, kNumPaddingBits_3,
                                             data_4, literal_4, kNumBytesPerCode_4, kNumPaddingBits_4
 								         );  
-/*	  else if (p_s_model == 1)
+	  else if (p_s_model == 1)
         four_columns_cmp_with_literal_nP_S(bitvector, T1_len, 
                                             data_1, literal_1, kNumBytesPerCode_1, kNumPaddingBits_1,
 								            data_2, literal_2, kNumBytesPerCode_2, kNumPaddingBits_2,
                                             data_3, literal_3, kNumBytesPerCode_3, kNumPaddingBits_3,
                                             data_4, literal_4, kNumBytesPerCode_4, kNumPaddingBits_4
 								         );  
-	  else if (p_s_model == 2)
+/*	  else if (p_s_model == 2)
         four_columns_cmp_with_literal_P_nS(bitvector, T1_len, 
                                             data_1, literal_1, kNumBytesPerCode_1, kNumPaddingBits_1,
 								            data_2, literal_2, kNumBytesPerCode_2, kNumPaddingBits_2,
@@ -470,7 +470,7 @@ void main(int argc, char **argv)
   uint64_t tuples          = 1000000000; //
 
   printf("tuples = %d, thread number = %d, huge_table_enable = %d, T1_bit_width = %d, T2_bit_width = %d, T3_bit_width = %d, T4_bit_width = %d, prefetch_model = %d\n", 
-         tuples,       thread_num,         huge_table_enable,      T1_bit_width,      T2_bit_width,      T3_bit_width,      T4_bit_width,      prefetch_model     ); 
+         tuples,       thread_num,         huge_table_enable,      T1_bit_width,      T2_bit_width,      T3_bit_width,      T4_bit_width,      inst_Monitor_Event.prefetch_model     ); 
  
 
   

@@ -2,14 +2,14 @@
 #echo $1    
 echo $1    #output file name.....
 
-for i in 8 # 4 1 5 7 8 16 
+for i in 8 # 1 4 5 5 7  16 
 do
   echo ""  >>$1
   echo "With threads:" $i >>$1
 	    for j in 0.5 0.4 0.3 0.2 0.1 0.05 0.01 0.005 0.001 # 0.6 
 		do
-		  echo " selectivity : 0.9 0.8 0.7 " $j >>$1 
-          ./4_column_compare_with_literal_test.x $i 0 17 17 17 17 0 1 1 0.5 0.5 0.5 $j >result.txt # 0.9 0.8 0.7
+		  echo " selectivity : 0.5 0.5 0.5 " $j >>$1 
+          ./4_column_compare_with_literal_test.x $i 0 17 17 17 17 0 5 5 0.5 0.5 0.5 $j >result.txt # 0.9 0.8 0.7
           cat result.txt |grep "p_s_model"  >>$1
           cat result.txt |grep "Instructions-retired"  >>$1
           cat result.txt |grep "L3Misses"  >>$1
@@ -21,3 +21,4 @@ do
           rm result.txt
 		done  
      done	   
+ 

@@ -1,0 +1,92 @@
+
+With threads: 1
+selectivity of p2: 0.6
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.600000
+Instructions-retired 1020055858
+L3Misses 6943546
+CyclesLostDueL3CacheMisses 1.01855
+BytesReadFromMC: 3302631232
+BytesWrittenToMC: 146102464
+17-17-bit codes, time: 348247228.000, codes_per_ns:  2.872
+
+selectivity of p2: 0.5
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.500000
+Instructions-retired 1011536066
+L3Misses 6738010
+CyclesLostDueL3CacheMisses 1.0082
+BytesReadFromMC: 3193954112
+BytesWrittenToMC: 145999936
+17-17-bit codes, time: 341413047.000, codes_per_ns:  2.929
+
+selectivity of p2: 0.4
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.400000
+Instructions-retired 1003316816
+L3Misses 6371888
+CyclesLostDueL3CacheMisses 0.970857
+BytesReadFromMC: 3059893184
+BytesWrittenToMC: 145840704
+17-17-bit codes, time: 335346009.000, codes_per_ns:  2.982
+
+selectivity of p2: 0.3
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.300000
+Instructions-retired 994337462
+L3Misses 5840402
+CyclesLostDueL3CacheMisses 0.928838
+BytesReadFromMC: 2921630592
+BytesWrittenToMC: 145553664
+17-17-bit codes, time: 321849938.000, codes_per_ns:  3.107
+
+selectivity of p2: 0.2
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.200000
+Instructions-retired 986989929
+L3Misses 5362224
+CyclesLostDueL3CacheMisses 0.889104
+BytesReadFromMC: 2800027456
+BytesWrittenToMC: 145848640
+17-17-bit codes, time: 307770702.000, codes_per_ns:  3.249
+
+selectivity of p2: 0.1
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.100000
+Instructions-retired 977851308
+L3Misses 4810713
+CyclesLostDueL3CacheMisses 0.846998
+BytesReadFromMC: 2682195584
+BytesWrittenToMC: 145651008
+17-17-bit codes, time: 290173333.000, codes_per_ns:  3.446
+
+selectivity of p2: 0.05
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.050000
+Instructions-retired 974016548
+L3Misses 4568806
+CyclesLostDueL3CacheMisses 0.83114
+BytesReadFromMC: 2629921472
+BytesWrittenToMC: 145739904
+17-17-bit codes, time: 280325230.000, codes_per_ns:  3.567
+
+selectivity of p2: 0.01
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.010000
+Instructions-retired 969912071
+L3Misses 4346247
+CyclesLostDueL3CacheMisses 0.818214
+BytesReadFromMC: 2589648704
+BytesWrittenToMC: 145461376
+17-17-bit codes, time: 271468608.000, codes_per_ns:  3.684
+
+selectivity of p2: 0.005
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.005000
+Instructions-retired 969324513
+L3Misses 4284935
+CyclesLostDueL3CacheMisses 0.813963
+BytesReadFromMC: 2584775744
+BytesWrittenToMC: 145302784
+17-17-bit codes, time: 269295095.000, codes_per_ns:  3.713
+
+selectivity of p2: 0.001
+p_s_model = 1, T1_selevitity = 0.700000, T2_selevitity = 0.001000
+Instructions-retired 971950009
+L3Misses 4295011
+CyclesLostDueL3CacheMisses 0.813741
+BytesReadFromMC: 2583165888
+BytesWrittenToMC: 145733056
+17-17-bit codes, time: 269031265.000, codes_per_ns:  3.717
+

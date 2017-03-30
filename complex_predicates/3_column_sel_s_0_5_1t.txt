@@ -1,0 +1,74 @@
+
+With threads: 1
+selectivity: 0.5 0.5  0.5
+p_s_model = 1
+Instructions-retired 1290323756
+L3Misses 4349869
+CyclesLostDueL3CacheMisses 0.579378
+BytesReadFromMC: 3488210304
+BytesWrittenToMC: 146156160
+17-17-17-bit codes, time: 383648878.000, codes_per_ns:  2.607
+selectivity: 0.5 0.5  0.4
+p_s_model = 1
+Instructions-retired 1280462261
+L3Misses 4059271
+CyclesLostDueL3CacheMisses 0.565878
+BytesReadFromMC: 3416515776
+BytesWrittenToMC: 145682368
+17-17-17-bit codes, time: 366217975.000, codes_per_ns:  2.731
+selectivity: 0.5 0.5  0.3
+p_s_model = 1
+Instructions-retired 1267393852
+L3Misses 3734591
+CyclesLostDueL3CacheMisses 0.546813
+BytesReadFromMC: 3345347648
+BytesWrittenToMC: 146299200
+17-17-17-bit codes, time: 348852629.000, codes_per_ns:  2.867
+selectivity: 0.5 0.5  0.2
+p_s_model = 1
+Instructions-retired 1256856433
+L3Misses 3468683
+CyclesLostDueL3CacheMisses 0.542671
+BytesReadFromMC: 3281458304
+BytesWrittenToMC: 146514752
+17-17-17-bit codes, time: 325636177.000, codes_per_ns:  3.071
+selectivity: 0.5 0.5  0.1
+p_s_model = 1
+Instructions-retired 1244554177
+L3Misses 3120870
+CyclesLostDueL3CacheMisses 0.529475
+BytesReadFromMC: 3216482240
+BytesWrittenToMC: 146329856
+17-17-17-bit codes, time: 300748117.000, codes_per_ns:  3.325
+selectivity: 0.5 0.5  0.05
+p_s_model = 1
+Instructions-retired 1240859483
+L3Misses 3007616
+CyclesLostDueL3CacheMisses 0.533157
+BytesReadFromMC: 3190815232
+BytesWrittenToMC: 146458880
+17-17-17-bit codes, time: 286346421.000, codes_per_ns:  3.492
+selectivity: 0.5 0.5  0.01
+p_s_model = 1
+Instructions-retired 1233893294
+L3Misses 2835782
+CyclesLostDueL3CacheMisses 0.524448
+BytesReadFromMC: 3167644288
+BytesWrittenToMC: 146227328
+17-17-17-bit codes, time: 275950472.000, codes_per_ns:  3.624
+selectivity: 0.5 0.5  0.005
+p_s_model = 1
+Instructions-retired 1235064651
+L3Misses 2861654
+CyclesLostDueL3CacheMisses 0.530002
+BytesReadFromMC: 3168156160
+BytesWrittenToMC: 146224960
+17-17-17-bit codes, time: 274233933.000, codes_per_ns:  3.647
+selectivity: 0.5 0.5  0.001
+p_s_model = 1
+Instructions-retired 1232809774
+L3Misses 2800071
+CyclesLostDueL3CacheMisses 0.522469
+BytesReadFromMC: 3163189632
+BytesWrittenToMC: 146106752
+17-17-17-bit codes, time: 273621539.000, codes_per_ns:  3.655

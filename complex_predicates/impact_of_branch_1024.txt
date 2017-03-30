@@ -1,0 +1,145 @@
+
+tuples = 1000000000, selectivity = 0.010000, stride = 1, thread number = 1, inner_loop_size = 1024
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.000000
+Instructions-retired 9006030376
+Active-cycles 2075753640
+IPC 4.33868
+L2Misses 69393
+L3Misses 13880
+L2HitRatio 0.282337
+L3HitRatio 0.79998
+CyclesLostDueL2CacheMisses 0.00119051
+CyclesLostDueL3CacheMisses 0.00120361
+BytesReadFromMC: 1035840
+BytesWrittenToMC: 1044992
+time required for each code is 0.750253, for each executed code: inf
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.095825
+Instructions-retired 9588865394
+Active-cycles 6001104880
+IPC 1.59785
+L2Misses 161761
+L3Misses 25740
+L2HitRatio 0.821542
+L3HitRatio 0.840876
+CyclesLostDueL2CacheMisses 0.00100837
+CyclesLostDueL3CacheMisses 0.000772058
+BytesReadFromMC: 1902656
+BytesWrittenToMC: 1913600
+time required for each code is 1.791124, for each executed code: 18.691582
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.195862
+Instructions-retired 10193168766
+Active-cycles 9255816914
+IPC 1.10127
+L2Misses 212640
+L3Misses 4750
+L2HitRatio 0.704669
+L3HitRatio 0.977662
+CyclesLostDueL2CacheMisses 0.000982987
+CyclesLostDueL3CacheMisses 9.23743e-05
+BytesReadFromMC: 372800
+BytesWrittenToMC: 375872
+time required for each code is 2.672512, for each executed code: 13.644886
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.291138
+Instructions-retired 10768753308
+Active-cycles 12957707355
+IPC 0.831069
+L2Misses 260292
+L3Misses 3646
+L2HitRatio 0.720535
+L3HitRatio 0.985993
+CyclesLostDueL2CacheMisses 0.000868341
+CyclesLostDueL3CacheMisses 5.06478e-05
+BytesReadFromMC: 289536
+BytesWrittenToMC: 297216
+time required for each code is 3.714858, for each executed code: 12.759798
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.392456
+Instructions-retired 11401933957
+Active-cycles 16860988124
+IPC 0.676232
+L2Misses 435793
+L3Misses 24015
+L2HitRatio 0.613471
+L3HitRatio 0.944894
+CyclesLostDueL2CacheMisses 0.00105206
+CyclesLostDueL3CacheMisses 0.000256373
+BytesReadFromMC: 2383872
+BytesWrittenToMC: 2868800
+time required for each code is 4.819398, for each executed code: 12.280097
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.489075
+Instructions-retired 11966355151
+Active-cycles 19664425858
+IPC 0.608528
+L2Misses 425058
+L3Misses 5943
+L2HitRatio 0.648159
+L3HitRatio 0.986018
+CyclesLostDueL2CacheMisses 0.000923981
+CyclesLostDueL3CacheMisses 5.43998e-05
+BytesReadFromMC: 470400
+BytesWrittenToMC: 424896
+time required for each code is 5.584272, for each executed code: 11.418034
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.591797
+Instructions-retired 12595206483
+Active-cycles 19415555008
+IPC 0.648717
+L2Misses 439417
+L3Misses 7994
+L2HitRatio 0.702957
+L3HitRatio 0.981808
+CyclesLostDueL2CacheMisses 0.0009605
+CyclesLostDueL3CacheMisses 7.41117e-05
+BytesReadFromMC: 806528
+BytesWrittenToMC: 757824
+time required for each code is 5.590222, for each executed code: 9.446183
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.693542
+Instructions-retired 13204280507
+Active-cycles 17592246815
+IPC 0.750574
+L2Misses 439012
+L3Misses 5160
+L2HitRatio 0.696318
+L3HitRatio 0.988246
+CyclesLostDueL2CacheMisses 0.00104875
+CyclesLostDueL3CacheMisses 5.2796e-05
+BytesReadFromMC: 3123008
+BytesWrittenToMC: 450432
+time required for each code is 5.006367, for each executed code: 7.218544
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.792480
+Instructions-retired 13788600568
+Active-cycles 15685365660
+IPC 0.879074
+L2Misses 395599
+L3Misses 1888
+L2HitRatio 0.736724
+L3HitRatio 0.995227
+CyclesLostDueL2CacheMisses 0.00109641
+CyclesLostDueL3CacheMisses 2.16661e-05
+BytesReadFromMC: 174912
+BytesWrittenToMC: 173888
+time required for each code is 4.521462, for each executed code: 5.705455
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.890686
+Instructions-retired 14368770639
+Active-cycles 14382702900
+IPC 0.999031
+L2Misses 335062
+L3Misses 1359
+L2HitRatio 0.788677
+L3HitRatio 0.995944
+CyclesLostDueL2CacheMisses 0.00100442
+CyclesLostDueL3CacheMisses 1.70079e-05
+BytesReadFromMC: 98112
+BytesWrittenToMC: 101312
+time required for each code is 4.085437, for each executed code: 4.586843
+=====print the profiling result==========tuples = 1000000000, real selectivity = 0.996521
+Instructions-retired 15019044649
+Active-cycles 13188456783
+IPC 1.1388
+L2Misses 311294
+L3Misses 3421
+L2HitRatio 0.827612
+L3HitRatio 0.98901
+CyclesLostDueL2CacheMisses 0.000994463
+CyclesLostDueL3CacheMisses 4.66908e-05
+BytesReadFromMC: 507648
+BytesWrittenToMC: 875776
+time required for each code is 3.796158, for each executed code: 3.809411

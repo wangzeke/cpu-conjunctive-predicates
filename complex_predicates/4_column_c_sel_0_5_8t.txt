@@ -1,0 +1,74 @@
+
+With threads: 8
+ selectivity : 0.5 0.5 0.5  0.5
+p_s_model = 5
+Instructions-retired 1697356816
+L3Misses 7764967
+CyclesLostDueL3CacheMisses 0.423259
+BytesReadFromMC: 4998495552
+BytesWrittenToMC: 148734080
+17-17-17-17-bit codes, time: 168857372.500, codes_per_ns:  5.922
+ selectivity : 0.5 0.5 0.5  0.4
+p_s_model = 5
+Instructions-retired 1694700086
+L3Misses 7676852
+CyclesLostDueL3CacheMisses 0.411547
+BytesReadFromMC: 4986049152
+BytesWrittenToMC: 148784256
+17-17-17-17-bit codes, time: 168290807.500, codes_per_ns:  5.942
+ selectivity : 0.5 0.5 0.5  0.3
+p_s_model = 5
+Instructions-retired 1691393342
+L3Misses 7581095
+CyclesLostDueL3CacheMisses 0.388949
+BytesReadFromMC: 4961481856
+BytesWrittenToMC: 148894400
+17-17-17-17-bit codes, time: 167229067.625, codes_per_ns:  5.980
+ selectivity : 0.5 0.5 0.5  0.2
+p_s_model = 5
+Instructions-retired 1688210719
+L3Misses 7468199
+CyclesLostDueL3CacheMisses 0.422827
+BytesReadFromMC: 4940028928
+BytesWrittenToMC: 148740672
+17-17-17-17-bit codes, time: 167697238.625, codes_per_ns:  5.963
+ selectivity : 0.5 0.5 0.5  0.1
+p_s_model = 5
+Instructions-retired 1685882465
+L3Misses 7397083
+CyclesLostDueL3CacheMisses 0.408697
+BytesReadFromMC: 4924906432
+BytesWrittenToMC: 149167808
+17-17-17-17-bit codes, time: 166084560.250, codes_per_ns:  6.021
+ selectivity : 0.5 0.5 0.5  0.05
+p_s_model = 5
+Instructions-retired 1684944203
+L3Misses 7417368
+CyclesLostDueL3CacheMisses 0.399448
+BytesReadFromMC: 4915397952
+BytesWrittenToMC: 149511232
+17-17-17-17-bit codes, time: 165834623.500, codes_per_ns:  6.030
+ selectivity : 0.5 0.5 0.5  0.01
+p_s_model = 5
+Instructions-retired 1682296892
+L3Misses 7319538
+CyclesLostDueL3CacheMisses 0.394975
+BytesReadFromMC: 4914809856
+BytesWrittenToMC: 149225664
+17-17-17-17-bit codes, time: 165885761.000, codes_per_ns:  6.028
+ selectivity : 0.5 0.5 0.5  0.005
+p_s_model = 5
+Instructions-retired 1681657521
+L3Misses 7268637
+CyclesLostDueL3CacheMisses 0.415867
+BytesReadFromMC: 4914478336
+BytesWrittenToMC: 148863488
+17-17-17-17-bit codes, time: 166203520.500, codes_per_ns:  6.017
+ selectivity : 0.5 0.5 0.5  0.001
+p_s_model = 5
+Instructions-retired 1681733643
+L3Misses 7304227
+CyclesLostDueL3CacheMisses 0.386374
+BytesReadFromMC: 4912293888
+BytesWrittenToMC: 149022016
+17-17-17-17-bit codes, time: 165912638.875, codes_per_ns:  6.027

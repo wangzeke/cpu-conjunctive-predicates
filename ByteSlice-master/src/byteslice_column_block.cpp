@@ -129,7 +129,10 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
 
 #ifdef COUNTER_ENABLE
    WordUnit counter[4] = {0};
-#endif    
+#endif
+     WordUnit sum = 0;
+
+	 
     //for every kNumWordBits (64) tuples
     for(size_t offset = 0, bv_word_id = 0; offset < num_tuples_; offset += kNumWordBits, bv_word_id++){
         WordUnit bitvector_word = WordUnit(0);
@@ -153,28 +156,29 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                     m_equal = avx_ones();
                     break;
             }
-
+#if 1			
             if(
-#ifndef         NEARLYSTOP
+             #ifndef         NEARLYSTOP  //
                 (OPT==Bitwise::kSet) ||  0 != input_mask
-#else           
+             #else           
                 true
-#endif
+             #endif
               ){
 				  
 #ifdef COUNTER_ENABLE
     counter[0]++;
-#endif    				  
-                __builtin_prefetch(data_[0] + offset + i + kPrefetchDistance);
+#endif    		
+             //if ()		  
+                //__builtin_prefetch(data_[0] + offset + i + kPrefetchDistance);
                 ScanKernel2<CMP, 0>(
                         avx_load( (void *)(data_[0]+offset+i) ), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
                         mask_literal[0],
                         m_less,
                         m_greater,
                         m_equal);
-  #if 0						
+    #if 1						
                 if(kNumBytesPerCode > 1
-#ifndef                 NEARLYSTOP
+ #ifndef                 NEARLYSTOP //#if 0             //
                         && ((OPT==Bitwise::kSet && !avx_iszero(m_equal))
                             || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))
 #endif
@@ -229,7 +233,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                 }
    #endif  //for disabling the branching parts.....          
 			}
-
+#endif
             AvxUnit m_result;
             switch(CMP){
                 case Comparator::kLessEqual:
@@ -256,8 +260,7 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
             //save in temporary bit vector
             bitvector_word |= (static_cast<WordUnit>(mmask) << i);
         }
-        //put result bitvector into bitvector block
-        //size_t bv_word_id = offset / kNumWordBits;
+#if 1
         WordUnit x = bitvector_word;
         switch(OPT){
             case Bitwise::kSet:
@@ -270,7 +273,11 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(WordUnit literal,
                 break;
         }
         bvblock->SetWordUnit(x, bv_word_id);
+#else
+	    sum |= 	bitvector_word; // delete the impact of store result.....
+#endif	
     }
+    //bvblock->SetWordUnit(sum, 0); //to read all the impact of 
 	
 #ifdef COUNTER_ENABLE
    printf("counter: %d, %d, %d, %d\n", counter[0], counter[1], counter[2], counter[3]); 
@@ -355,8 +362,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
             }
 
             if((OPT==Bitwise::kSet) ||  0 != input_mask){
-                __builtin_prefetch(data_[0] + offset + i + 1024);
-                __builtin_prefetch(other_block->data_[0] + offset + i + 1024);
+                //__builtin_prefetch(data_[0] + offset + i + 1024);
+                //__builtin_prefetch(other_block->data_[0] + offset + i + 1024);
                 ScanKernel2<CMP, 0>(
                         avx_load( (void *)(data_[0]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
                         avx_load( (void *)(other_block->data_[0]+offset+i)), //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[0]+offset+i)),
@@ -366,8 +373,8 @@ void ByteSliceColumnBlock<BIT_WIDTH, PDIRECTION>::ScanHelper2(
                 if(kNumBytesPerCode > 1 && 
                         ((OPT==Bitwise::kSet && !avx_iszero(m_equal)) 
                         || (OPT!=Bitwise::kSet && 0!=(input_mask & _mm256_movemask_epi8(m_equal))))){
-                    __builtin_prefetch(data_[1] + offset + i + 1024);
-                    __builtin_prefetch(other_block->data_[1] + offset + i + 1024);
+                    //__builtin_prefetch(data_[1] + offset + i + 1024);
+                    //__builtin_prefetch(other_block->data_[1] + offset + i + 1024);
                     ScanKernel2<CMP, 1>(
                             avx_load( (void *)(data_[1]+offset+i)),              //_mm256_lddqu_si256(reinterpret_cast<__m256i*>(data_[0]+offset+i)),
                             avx_load( (void *)(other_block->data_[1]+offset+i)), // _mm256_lddqu_si256(reinterpret_cast<__m256i*>(other_block->data_[0]+offset+i)),

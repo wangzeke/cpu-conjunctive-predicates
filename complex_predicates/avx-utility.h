@@ -20,13 +20,23 @@
 
 // Load
 #ifdef STREAM_LOAD_ENABLE
+
 inline __m256i avx_load(void *mem_info){
     return  _mm256_stream_load_si256( (__m256i*)mem_info );
 }
+inline void avx_store(void *mem_info, __m256i a){
+	_mm256_stream_si256 ( (__m256i *)mem_info, a);
+}
+
 #else
+
 inline __m256i avx_load(void *mem_info){
     return _mm256_loadu_si256( (__m256i*)mem_info );
 }
+inline void avx_store(void *mem_info, __m256i a){
+	_mm256_store_si256 ( (__m256i *)mem_info, a);
+}
+
 #endif
 
 

@@ -344,7 +344,8 @@ void main(int argc, char **argv)
    
   uint64_t tuples          = 1000*1000*1000; //
 
-  printf("tuples = %d, thread number = %d, huge_table_enable = %d, T1_bit_width = %d, T2_bit_width = %d, prefetch_model = %d\n", tuples, thread_num, huge_table_enable, T1_bit_width, T2_bit_width, prefetch_model); 
+  printf("tuples = %d, thread number = %d, huge_table_enable = %d, T1_bit_width = %d, T2_bit_width = %d, prefetch_model = %d\n", 
+          tuples, thread_num, huge_table_enable, T1_bit_width, T2_bit_width, inst_Monitor_Event.prefetch_model); 
 
 
   

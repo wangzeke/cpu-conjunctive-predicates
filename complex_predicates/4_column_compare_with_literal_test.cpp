@@ -42,7 +42,7 @@
 #include "perf_counters.h"
 #include "4_column_compare_with_literal.h" 
 
-
+//#define OR_FIRST_EN
 //#include 	"byteslice_column_block.h"
 //
 #define INTEL_PCM_ENABLE
@@ -83,7 +83,7 @@ struct Monitor_Event inst_Monitor_Event = {
 		"MIC_2",
 		"MIC_3",
 	},
-    8	 
+    0	 
 };
 
 
@@ -417,8 +417,12 @@ for (uint32_t ii = 0; ii < 4; ii++)
 		{
 			bool real;
 			if ( (p_s_model >= 4) && (p_s_model <= 7) )
+			#ifdef OR_FIRST_EN
+               real  = ( (original_1[ii] > literal_1) || (original_2[ii] < literal_2) ) && ( (original_3[ii] > literal_3) || (original_4[ii] < literal_4)); 
+            #else		
                real  = ( (original_1[ii] > literal_1) && (original_2[ii] < literal_2) ) || ( (original_3[ii] > literal_3) && (original_4[ii] < literal_4)); 
-			else
+            #endif
+            else
                real  = ( (original_1[ii] > literal_1) && (original_2[ii] < literal_2) && (original_3[ii] > literal_3) && (original_4[ii] < literal_4)); 
 
 		   bool eval  = GetBit(bitvector, ii); //bvblock->GetBit(ii); 

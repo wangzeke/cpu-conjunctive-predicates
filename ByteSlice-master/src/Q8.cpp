@@ -1,9 +1,9 @@
 /*******************************************************************************
- * Copyright (c) 2015
- * The Hong Kong Polytechnic University, Database Group
- *
- * Author: Ziqiang Feng (cszqfeng AT comp.polyu.edu.hk)
- *
+ * Copyright (c) 2017
+ * National University of Singapore
+ * 
+ * Author: Wang, Zeke (wangzeke638@gmail.com)
+ * for Q8
  * See file LICENSE.md for details.
  *******************************************************************************/
 
@@ -37,7 +37,7 @@
 
 #define BIT_WIDTH_BYTESLICE 17
 #define INTEL_PCM_ENABLE
-//#define TWO_COLUMN_ENABLE //test on two column....
+#define TWO_COLUMN_ENABLE //test on two column....
 
 
 namespace byteslice {
@@ -235,6 +235,7 @@ typedef struct {
 
     float T1_selevitity;	
     float T2_selevitity;	
+    float T3_selevitity;	
 	
 	size_t tuples;
 	size_t *set_bits;
@@ -250,64 +251,95 @@ void *run(void *arg)
 	bind_thread(d->thread, d->threads);
 	int bits = BIT_WIDTH_BYTESLICE, t; 
 
-	float    T1_selevitity     = d->T1_selevitity;
+//	  pthread_barrier_wait(barrier++); 
+	  FILE *fp_r_name, *fp_o_orderdate, *fp_p_type;//
+	  char str[128];
+	  uint32_t tmp;
+      size_t i;
 
-	
-	size_t i;
+	  
+
 	pthread_barrier_t *barrier = d->barrier;
 	size_t tuples = d->tuples;
-	assert(tuples % 128 == 0);
-	size_t bitmasks = tuples / 64;
+	//assert(tuples % 128 == 0);
+	size_t bitmasks = (tuples+63) / 64;
 
-	rand32_t *gen = rand32_init(d->seed);
+
+
 	uint32_t *original         = (uint32_t *) alloc(tuples * sizeof(uint32_t));
-
-	//uint64_t *compressed   = (uint64_t *) alloc(words * sizeof(uint64_t));
-	//uint32_t *decompressed = (uint32_t *) alloc(tuples * sizeof(uint32_t));
-	uint64_t *bitmap       = (uint64_t *) alloc(bitmasks * sizeof(uint64_t));
+	uint32_t *original_1       = (uint32_t *) alloc(tuples * sizeof(uint32_t));
+	uint32_t *original_2       = (uint32_t *) alloc(tuples * sizeof(uint32_t));
+	uint64_t *bitmap           = (uint64_t *) alloc(bitmasks * sizeof(uint64_t));
 	
-    size_t kMemSizePerByteSlice = tuples; // * sizeof(uint32_t);
-
-
-	kMemSizePerByteSlice = 1;	
+    size_t kMemSizePerByteSlice = 1;	
     //uint32_t value_1 = rand32_next(gen) >> (32 - bits);		
     uint32_t num_    = tuples; //1024;//64; //128;//
 
 	//for (bits = min_bits ; bits <= max_bits ; ++bits) 
 	{
-
-        uint32_t literal_1   = (uint32_t) ( (1-T1_selevitity) * (float)(1<<bits) ); //do greater than literal...
+        uint32_t literal_1   = 2;    //America
+	    uint32_t literal_2   = 1861; //1995-01-01
+        uint32_t literal_3   = 2604; //1996-12-31
+        uint32_t literal_4   = 4;    //ECONOMY ANODIZED STEEL
 
 		BitVectorBlock* bvblock = new BitVectorBlock(num_);
 	
     //ByteSliceColumnBlock<16>* block2 = new ByteSliceColumnBlock<16>(num_);
-      ByteSliceColumnBlock<BIT_WIDTH_BYTESLICE>* block2   = new ByteSliceColumnBlock<BIT_WIDTH_BYTESLICE>(num_);
-	
-		// compress
-		uint64_t t1 = thread_time();
-		   //compress(original, compressed, tuples, bits);
-		  // compress(original, data_, tuples, bits);
-		       
-			   
-			 //  uint32_t tmp_cons = rand32_next(gen) & ((1<<bits)-1); 
-			   
-             for(i=0; i < num_; i++){
-	          	uint32_t tmp = rand32_next(gen) & ((1<<bits)-1); //tmp_cons; //rand32_next(gen) >> (32 - bits);
-	          	original[i]  = tmp; //tmp_cons; //
-                 block2->SetTuple(i, tmp);
-				 			 
-    }
+      ByteSliceColumnBlock<8>* block2    = new ByteSliceColumnBlock<8>(num_);
+      ByteSliceColumnBlock<12>* block2_1 = new ByteSliceColumnBlock<12>(num_);
+      ByteSliceColumnBlock<8>* block2_2  = new ByteSliceColumnBlock<8>(num_);
 
-			 
-		t1 = thread_time() - t1;
-		pthread_barrier_wait(barrier++);
+  //1....................: output_r1_name
+      if((fp_r_name=fopen("../../../lineitemWT/output_r1_name.txt","r"))==NULL) {
+        printf("cannot open output_r1_name.txt/n");
+        exit(1);
+      }
+	  i = 0;
+      while(fscanf(fp_r_name, "%d\n", &tmp) > 0) { 
+         original[i]       = tmp; //tmp_cons; //
+         block2->SetTuple(i, tmp);		  
+	     i++;
+    }
+    fclose(fp_r_name);
+
+	
+  //2....................: output_o_orderdate.txt
+      if((fp_o_orderdate=fopen("../../../lineitemWT/output_o_orderdate.txt","r"))==NULL) {
+        printf("cannot open output_o_orderdate.txt/n");
+        exit(1);
+      }
+	  i = 0;
+      while(fscanf(fp_o_orderdate, "%d\n", &tmp) > 0) { 
+         original_1[i]       = tmp; //tmp_cons; //
+         block2_1->SetTuple(i, tmp);		  
+	     i++;
+    }
+    fclose(fp_o_orderdate);
+
+	
+
+  //3....................: output_p_type.txt
+      if((fp_p_type=fopen("../../../lineitemWT/output_p_type.txt","r"))==NULL) {
+        printf("cannot open output_p_type.txt/n");
+        exit(1);
+      }
+	  i = 0;
+      while(fscanf(fp_p_type, "%d\n", &tmp) > 0) { 
+         original_2[i]       = tmp; //tmp_cons; //
+         block2_2->SetTuple(i, tmp);		  
+	     i++;
+    }
+    fclose(fp_p_type);
+
+
+    pthread_barrier_wait(barrier++);
 
 		
 		
 #ifdef INTEL_PCM_ENABLE		
     if (d->thread == 0)
 	{   
-        printf("bit_width = %d\n", BIT_WIDTH_BYTESLICE);
+     // printf("bit_width = %d\n", BIT_WIDTH_BYTESLICE);
         PCM_initPerformanceMonitor(&inst_Monitor_Event, NULL);
         PCM_start();
 	}
@@ -315,8 +347,11 @@ void *run(void *arg)
 		pthread_barrier_wait(barrier++);
 		uint64_t t3 = thread_time();
 		
-           block2->Scan(Comparator::kGreater, literal_1, bvblock, Bitwise::kSet);
-	   
+           block2->Scan(Comparator::kEqual,          literal_1, bvblock, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kGreaterEqual, literal_2, bvblock, Bitwise::kAnd);
+		   block2_1->Scan(Comparator::kLessEqual,    literal_3, bvblock, Bitwise::kAnd);
+		   block2_2->Scan(Comparator::kEqual,        literal_4, bvblock, Bitwise::kAnd);
+
 		pthread_barrier_wait(barrier++);
 		t3 = thread_time() - t3;
 		
@@ -332,32 +367,33 @@ void *run(void *arg)
 		d->times[2][d->thread] = t3;
 
 		pthread_barrier_wait(barrier++);
-	
-		//WordUnit flag_0 = bvblock->GetWordUnit(0);
-		//printf("flag_0 = 0x%llx\n", flag_0);
-	    //verification of the comparision results.
-		//for (size_t ii = 0; ii < tuples; ii++)
-        //if (d->thread == 0)
 
+		
     if (d->thread == 0)
 	{   
 		 for (size_t ii = 0; ii < num_; ii++) //
 		{
 			//size_t ii = 11;
-
-            bool real  = ((original[ii] > literal_1)); 
+			bool real  = ((original[ii] == literal_1)&&
+			              (original_1[ii] >= literal_2)&&
+						  (original_1[ii] <= literal_3)&&
+						  (original_2[ii] == literal_4)
+						  ); 
 	
 			bool eval  = bvblock->GetBit(ii);
             if (real !=  eval )
 			{
-
+#ifdef	TWO_COLUMN_ENABLE	
+		      printf("%d:  eval: %d, real: %d (%d, %d)\n", ii, eval, real, (original[ii] > literal_1), (original_1[ii] < literal_2));
+#else 
 		      printf("%d:  eval: %d, real: %d \n", ii, eval, real);
-     
+#endif	     
              break;
 			 //   return NULL;
 			}
   	    }
 	}	
+	
 
 
 		pthread_barrier_wait(barrier++);
@@ -366,22 +402,15 @@ void *run(void *arg)
 			for (size_t t = 0 ; t != d->threads ; ++t) {
 				t_sum += d->times[2][t];
 			}
-
-			printf("%2d codes, time: %6.3f, codes_per_ns: %6.3f\n", BIT_WIDTH_BYTESLICE,((double)t_sum / (double)d->threads), 
+			printf("THREE: %2d codes, time: %6.3f, codes_per_ns: %6.3f\n", BIT_WIDTH_BYTESLICE,((double)t_sum / (double)d->threads), 
 			       (num_ * d->threads * 1.0) / ((double)t_sum / (double)d->threads) );
-
-
 		}
 		
 	}
-	free(gen);
+
 	free(original);
-#ifdef	TWO_COLUMN_ENABLE	
 	free(original_1);
-#endif	
-	//free(compressed);
-	//free(decompressed);
-	//free(bitmap);
+	free(bitmap);
 	pthread_exit(NULL);
 }
 
@@ -400,17 +429,20 @@ int hardware_threads(void)
 
 void main(int argc, char **argv)
 {
-	int t, threads       = argc > 1 ? atoi(argv[1]) : hardware_threads();
+	int t, threads       = argc > 1 ? atoi(argv[1]) : 1; //hardware_threads();
     float T1_selevitity  = argc > 2 ? atof(argv[2])  : 0.5; 
 
-	size_t tuples        =  1000 * 1000 * 1000;
+    float T2_selevitity  = argc > 3 ? atof(argv[3])  : 0.5; 
+    float T3_selevitity  = argc > 4 ? atof(argv[4])  : 0.5; 
+	size_t tuples        =  60490115; //from TPC-H, with SF = 10
+	
 	int b, barriers      = 3* 7;
 	pthread_barrier_t barrier[barriers];
 	for (b = 0 ; b != barriers ; ++b)
 		pthread_barrier_init(&barrier[b], NULL, threads);
 	srand(time(NULL));
-
-	printf("Threads: %d, T1_selevitity = %f\n", threads, T1_selevitity);
+ 
+	printf("Threads: %d, T1_selevitity = %f, T2_selevitity = %f, T3_selevitity = %f\n", threads, T1_selevitity, T2_selevitity, T3_selevitity);
 
 	byteslice::info_t info[threads]; //
 	uint64_t times[3][threads];
@@ -433,11 +465,13 @@ void main(int argc, char **argv)
 
 
 		
-		info[t].tuples = (tuples / threads) & 0xffffff80;
+		info[t].tuples = tuples / threads;//(tuples / threads) & 0xffffff80;
 		info[t].seed = rand();
 		
         info[t].T1_selevitity  = T1_selevitity;
-	
+        info[t].T2_selevitity  = T2_selevitity;
+        info[t].T3_selevitity  = T3_selevitity;
+		
 		info[t].thread   = t;
 		info[t].threads  = threads;
 		info[t].barrier  = barrier;

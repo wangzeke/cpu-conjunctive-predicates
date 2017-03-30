@@ -8,7 +8,7 @@ OPT=  -O3 -pthread -fPIC -fopenmp -std=c++11 -lrt
 COMMONTOOL = thread_tool.o rand_tool.o file_tool.o cpu_mapping.o huge_page.o memory_tool.o libpcm_2_11.a
 
 
-all: impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x
+all: impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x
  
 #####################common functions##########################################
 rand_tool.o: rand_tool.cpp   
@@ -28,10 +28,18 @@ memory_tool.o: memory_tool.cpp
 #########################end of common functions################################
 
 
+
+# check the impact of hardware prefetcher, branch and PCM. Also the one column case.
+impact_of_branch_on_cpu.x: impact_of_branch_on_cpu.cpp avx-utility.h types.h $(COMMONTOOL) common_tool.h 
+	$(CC) $(OPT) impact_of_branch_on_cpu.cpp -o impact_of_branch_on_cpu.x $(COMMONTOOL)
+
 # check the impact of hardware prefetcher, branch and PCM. Also the one column case.
 impact_of_prefetcher_tlb.x: impact_of_prefetcher_tlb.cpp avx-utility.h types.h $(COMMONTOOL) common_tool.h 
 	$(CC) $(OPT) impact_of_prefetcher_tlb.cpp -o impact_of_prefetcher_tlb.x $(COMMONTOOL)
 #####################end of motivations##########################################	
+ 
+ 
+ 
  
 # check the case with two columns. 2_column_compare_with_literal.cpp
 column_compare_with_literal.o: column_compare_with_literal.cpp types.h avx-utility.h 
