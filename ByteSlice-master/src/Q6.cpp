@@ -276,7 +276,7 @@ void *run(void *arg)
 	    uint32_t literal_2   = 1860; //1995-1-1
         uint32_t literal_3   = 5;    //discount:0.05
         uint32_t literal_4   = 7;    //discount:0.07
-        uint32_t literal_5   = 24;    //discount:0.07
+        uint32_t literal_5   = 24;    //quatity:24
 
 
 		BitVectorBlock* bvblock = new BitVectorBlock(num_);
@@ -321,7 +321,7 @@ void *run(void *arg)
          block2_1->SetTuple(i, tmp);		  
 	     i++;
       }
-      fclose(fp_l_discount);
+      fclose(fp_l_discount); 
 
 	
   //3....................: l_quantity.txt
@@ -330,7 +330,7 @@ void *run(void *arg)
         exit(1);
       }
 	  i = 0;
-      while(fscanf(fp_l_quantity, "%d\n", &tmp) > 0) { 
+      while(fscanf(fp_l_quantity, "%d\n", &tmp_f) > 0) { 
 	     if ( (tmp_f < 0.0) || (tmp_f > 128.0))
 		 {  
 			printf("l_quantity ERROR::::::::tmp_f = %f\n", tmp_f); 

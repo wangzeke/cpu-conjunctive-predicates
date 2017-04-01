@@ -243,6 +243,60 @@ inline void computeKernelWithMask_FIRST(const AvxUnit &byteslice1,
         }
 } 
 
+ 
+template <Comparator CMP>
+inline void computeKernelWithMask_LAST(const AvxUnit &byteslice1,
+                                  const AvxUnit &byteslice2,
+                                        AvxUnit &mask_less,
+                                        AvxUnit &mask_greater,
+                                        AvxUnit &mask_equal,
+                                        AvxUnit &mask_success,
+						                AvxUnit &mask_fail) 
+{
+        switch(CMP){
+            case Comparator::kEqual:
+                //mask_less        = avx_cmplt<ByteUnit>(byteslice1, byteslice2);
+                //mask_greater     = avx_cmpgt<ByteUnit>(byteslice1, byteslice2);				
+                mask_equal       = avx_cmpeq<ByteUnit>(byteslice1, byteslice2);
+				mask_fail        = avx_not(mask_equal); //avx_or(mask_less, mask_greater); //
+				mask_success     = avx_zero();
+                break;	
+            case Comparator::kInequal:
+                //mask_less        = avx_cmplt<ByteUnit>(byteslice1, byteslice2);
+                //mask_greater     = avx_cmpgt<ByteUnit>(byteslice1, byteslice2);				
+                mask_equal       = avx_cmpeq<ByteUnit>(byteslice1, byteslice2);
+				mask_success     = avx_not(mask_equal); //avx_or(mask_less, mask_greater);	//			
+				mask_fail        = avx_zero();
+                break;
+            case Comparator::kLess:
+                mask_less        = avx_cmplt<ByteUnit>(byteslice1, byteslice2);
+                mask_greater     = avx_cmpgt<ByteUnit>(byteslice1, byteslice2);				
+                mask_equal       = avx_cmpeq<ByteUnit>(byteslice1, byteslice2);
+                mask_fail        = mask_greater;
+				mask_success     = mask_less;
+            case Comparator::kLessEqual:
+                mask_less        = avx_cmplt<ByteUnit>(byteslice1, byteslice2);
+                mask_greater     = avx_cmpgt<ByteUnit>(byteslice1, byteslice2);				
+                mask_equal       = avx_cmpeq<ByteUnit>(byteslice1, byteslice2);
+                mask_fail        = mask_greater;
+				mask_success     = avx_or(mask_equal, mask_less);  //;	
+                break;
+            case Comparator::kGreater:
+                mask_less        = avx_cmplt<ByteUnit>(byteslice1, byteslice2);
+                mask_greater     = avx_cmpgt<ByteUnit>(byteslice1, byteslice2);				
+                mask_equal       = avx_cmpeq<ByteUnit>(byteslice1, byteslice2);
+                mask_fail        = mask_less;
+				mask_success     = mask_greater;	
+                break;
+            case Comparator::kGreaterEqual:
+                mask_less        = avx_cmplt<ByteUnit>(byteslice1, byteslice2);
+                mask_greater     = avx_cmpgt<ByteUnit>(byteslice1, byteslice2);				
+                mask_equal       = avx_cmpeq<ByteUnit>(byteslice1, byteslice2);
+                mask_fail        = mask_less;
+				mask_success     = avx_or(mask_equal, mask_greater);  //| ;	
+                break;
+        }
+} 
 
 
 
@@ -427,5 +481,7 @@ inline void computeConjunctivePredicates(const AvxUnit &input_mmask_1,
 }
 //after aggregating informatio from all the predicates, 
 //then scatter the updated equation to all 
+
+
 
 #endif  //AVX_UTILITY_H
