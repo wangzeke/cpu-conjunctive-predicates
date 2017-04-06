@@ -1,0 +1,16 @@
+Execution model:  0
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 134491415
+Active-cycles 100697491
+IPC 1.3356
+L2Misses 248050
+L3Misses 227005
+L2HitRatio 0.0692901
+L3HitRatio 0.0848418
+CyclesLostDueL2CacheMisses 0.00902233
+CyclesLostDueL3CacheMisses 0.405779
+BytesReadFromMC: 205372800
+BytesWrittenToMC: 22692032
+12- 8- 8-bit codes, time: 27795737.000, codes_per_ns:  2.176
+Execution model:  1

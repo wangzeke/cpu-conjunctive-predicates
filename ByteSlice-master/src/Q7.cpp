@@ -236,6 +236,7 @@ typedef struct {
     float T1_selevitity;	
     float T2_selevitity;	
     float T3_selevitity;	
+    int execution_model;
 	
 	size_t tuples;
 	size_t *set_bits;
@@ -251,6 +252,7 @@ void *run(void *arg)
 	bind_thread(d->thread, d->threads);
 	int bits = BIT_WIDTH_BYTESLICE, t; 
 
+	int execution_model = d->execution_model;
 
 	
 	size_t i;
@@ -349,19 +351,55 @@ void *run(void *arg)
 		pthread_barrier_wait(barrier++);
 		uint64_t t3 = thread_time();
 
+        if (execution_model == 0)
+		 {	
            block2->Scan(Comparator::kEqual,   literal_1,   bvblock, Bitwise::kSet);
 		   block2_1->Scan(Comparator::kEqual, literal_2,   bvblock, Bitwise::kAnd);
-
            block2->Scan(Comparator::kEqual,   literal_2,   bvblock_1, Bitwise::kSet);
 		   block2_1->Scan(Comparator::kEqual, literal_1,   bvblock_1, Bitwise::kAnd);
-
            bvblock->Or(bvblock_1);
 		   
 		   block2_2->Scan(Comparator::kGreaterEqual, literal_3, bvblock, Bitwise::kAnd);
 		   block2_2->Scan(Comparator::kLessEqual,    literal_4, bvblock, Bitwise::kAnd);
- 
+         }
+		 
+        else if (execution_model == 1)
+		 {	
+           block2->Scan(Comparator::kEqual,   literal_1,   bvblock, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kEqual, literal_2,   bvblock, Bitwise::kAnd);
+           block2->Scan(Comparator::kEqual,   literal_2,   bvblock_1, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kEqual, literal_1,   bvblock_1, Bitwise::kAnd);
+           bvblock->Or(bvblock_1);
 		   
-
+		   block2_2->Scan(Comparator::kLessEqual,    literal_4, bvblock, Bitwise::kAnd);
+		   block2_2->Scan(Comparator::kGreaterEqual, literal_3, bvblock, Bitwise::kAnd);
+         }		   
+        else if (execution_model == 2)
+		 {	
+           block2->Scan(Comparator::kEqual,   literal_1,   bvblock, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kEqual, literal_2,   bvblock, Bitwise::kAnd);
+           block2->Scan(Comparator::kEqual,   literal_2,   bvblock_1, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kEqual, literal_1,   bvblock_1, Bitwise::kAnd);
+           bvblock->Or(bvblock_1);
+		   
+		   block2_2->Scan(Comparator::kGreaterEqual, literal_3, bvblock_1, Bitwise::kSet);
+		   block2_2->Scan(Comparator::kLessEqual,    literal_4, bvblock_1, Bitwise::kAnd);
+           bvblock->Or(bvblock_1);
+		   
+         }
+		 
+        else if (execution_model == 3)
+		 {	
+           block2->Scan(Comparator::kEqual,   literal_1,   bvblock, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kEqual, literal_2,   bvblock, Bitwise::kAnd);
+           block2->Scan(Comparator::kEqual,   literal_2,   bvblock_1, Bitwise::kSet);
+		   block2_1->Scan(Comparator::kEqual, literal_1,   bvblock_1, Bitwise::kAnd);
+           bvblock->Or(bvblock_1);
+		   
+		   block2_2->Scan(Comparator::kLessEqual,    literal_4, bvblock_1, Bitwise::kSet);
+		   block2_2->Scan(Comparator::kGreaterEqual, literal_3, bvblock_1, Bitwise::kAnd);
+           bvblock->Or(bvblock_1);		   
+         }		
 		pthread_barrier_wait(barrier++);
 		t3 = thread_time() - t3;
 		
@@ -450,10 +488,12 @@ int hardware_threads(void)
 void main(int argc, char **argv)
 {
 	int t, threads       = argc > 1 ? atoi(argv[1]) : 1; //hardware_threads();
-    float T1_selevitity  = argc > 2 ? atof(argv[2])  : 0.5; 
+	int execution_model  = argc > 2 ? atof(argv[2]) : 0;         
+    float T1_selevitity  = 0.5; 
+    float T2_selevitity  = 0.5; 
+    float T3_selevitity  = 0.5; 
 
-    float T2_selevitity  = argc > 3 ? atof(argv[3])  : 0.5; 
-    float T3_selevitity  = argc > 4 ? atof(argv[4])  : 0.5; 
+	
 	size_t tuples        =  60490115;//1000 * 1000 * 1000;
 	int b, barriers      = 3* 7;
 	pthread_barrier_t barrier[barriers];
@@ -461,7 +501,7 @@ void main(int argc, char **argv)
 		pthread_barrier_init(&barrier[b], NULL, threads);
 	srand(time(NULL));
  
-	printf("Threads: %d, T1_selevitity = %f, T2_selevitity = %f, T3_selevitity = %f\n", threads, T1_selevitity, T2_selevitity, T3_selevitity);
+	printf("Threads: %d, tuples = %d, execution_model = %d\n", threads, tuples, execution_model);
 
 	byteslice::info_t info[threads]; //
 	uint64_t times[3][threads];
@@ -482,6 +522,8 @@ void main(int argc, char **argv)
         CPU_SET(cpu_idx, &set);
         pthread_attr_setaffinity_np(&attr, sizeof(cpu_set_t), &set);
 
+
+		info[t].execution_model = execution_model;
 
 		
 		info[t].tuples = tuples / threads;//(tuples / threads) & 0xffffff80;

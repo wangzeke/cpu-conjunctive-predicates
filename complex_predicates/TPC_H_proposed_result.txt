@@ -1,0 +1,84 @@
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 85476031
+Active-cycles 57074205
+IPC 1.49763
+L2Misses 351369
+L3Misses 327075
+L2HitRatio 0.0485901
+L3HitRatio 0.069141
+CyclesLostDueL2CacheMisses 0.0177604
+CyclesLostDueL3CacheMisses 1.03153
+BytesReadFromMC: 200435712
+BytesWrittenToMC: 26148864
+ 3-12-12-bit codes, time: 15450068.000, codes_per_ns:  3.915
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 72997870
+Active-cycles 42144331
+IPC 1.73209
+L2Misses 265846
+L3Misses 253716
+L2HitRatio 0.0238775
+L3HitRatio 0.0456279
+CyclesLostDueL2CacheMisses 0.0139391
+CyclesLostDueL3CacheMisses 1.08363
+BytesReadFromMC: 131010112
+BytesWrittenToMC: 24940544
+ 3-12-bit codes, time: 11227750.000, codes_per_ns:  5.388
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 134405193
+Active-cycles 100012127
+IPC 1.34389
+L2Misses 242874
+L3Misses 222968
+L2HitRatio 0.0678089
+L3HitRatio 0.0819602
+CyclesLostDueL2CacheMisses 0.00855804
+CyclesLostDueL3CacheMisses 0.401294
+BytesReadFromMC: 205050624
+BytesWrittenToMC: 22590592
+12- 8- 8-bit codes, time: 27702851.000, codes_per_ns:  2.184
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 91184314
+Active-cycles 44585582
+IPC 2.04515
+L2Misses 370337
+L3Misses 325993
+L2HitRatio 0.0428046
+L3HitRatio 0.11974
+CyclesLostDueL2CacheMisses 0.0383127
+CyclesLostDueL3CacheMisses 1.31609
+BytesReadFromMC: 190461248
+BytesWrittenToMC: 26978496
+ 8- 8-12-bit codes, time: 11910368.000, codes_per_ns:  5.079
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 96915889
+Active-cycles 43166970
+IPC 2.24514
+L2Misses 313380
+L3Misses 281499
+L2HitRatio 0.0678264
+L3HitRatio 0.101733
+CyclesLostDueL2CacheMisses 0.0295942
+CyclesLostDueL3CacheMisses 1.17381
+BytesReadFromMC: 188521984
+BytesWrittenToMC: 26305920
+ 8-12- 8-bit codes, time: 11507424.000, codes_per_ns:  5.257
+tuples = 60490115, thread number = 1, huge_table_enable = 0, T1_bit_width = 17, T2_bit_width = 17, T3_bit_width = 17, prefetch_model = 0
+=====print the profiling result==========
+Instructions-retired 140693246
+Active-cycles 128880708
+IPC 1.09165
+L2Misses 868630
+L3Misses 559147
+L2HitRatio 0.249417
+L3HitRatio 0.356289
+CyclesLostDueL2CacheMisses 0.085375
+CyclesLostDueL3CacheMisses 0.780927
+BytesReadFromMC: 397223808
+BytesWrittenToMC: 25359232
+ 8-12-12-bit codes, time: 35896455.000, codes_per_ns:  1.685
