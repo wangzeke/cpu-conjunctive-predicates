@@ -202,22 +202,26 @@ void *run(void *arg)
    }
    for (i = 0; i < 4; i++) // malloc memory space for two codes. 
    {
-      data_1[i]      = (ByteUnit *)malloc_memory(T1_len_aligned*sizeof(ByteUnit)*4, huge_table_enable);	  
+      data_1[i]      = (ByteUnit *)malloc_memory(T1_len_aligned*sizeof(ByteUnit), huge_table_enable);
+      printf ( "&data_1[%d] = %p\n", i, (data_1[i]) );
 	  if (data_1[i] == NULL) {
             printf ( "&data_1[%d]_malloc for two column fails\n", i);
             return NULL;
          }
       data_2[i]      = (ByteUnit *)malloc_memory(T1_len_aligned*sizeof(ByteUnit), huge_table_enable);	  
+      printf ( "&data_2[%d] = %p\n", i, (data_2[i]) );
 	  if (data_2[i] == NULL) {
             printf ( "&data_2[%d]_malloc for two column fails\n", i);
             return NULL;
          }		
       data_3[i]      = (ByteUnit *)malloc_memory(T1_len_aligned*sizeof(ByteUnit), huge_table_enable);	  
+      printf ( "&data_3[%d] = %p\n", i, (data_3[i]) );
 	  if (data_3[i] == NULL) {
             printf ( "&data_3[%d]_malloc for two column fails\n", i);
             return NULL;
          }		
       data_4[i]      = (ByteUnit *)malloc_memory(T1_len_aligned*sizeof(ByteUnit), huge_table_enable);	  
+      printf ( "&data_4[%d] = %p\n", i, (data_4[i]) );
 	  if (data_4[i] == NULL) {
             printf ( "&data_3[%d]_malloc for two column fails\n", i);
             return NULL;

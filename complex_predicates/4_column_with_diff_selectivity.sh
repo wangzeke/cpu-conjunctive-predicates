@@ -2,7 +2,7 @@
 #echo $1    
 echo $1    #output file name.....
 
-for i in 8 # 4 1 5 7 8 16 
+for i in 1 # 4 1 5 7 8 16 
 do
   echo ""  >>$1
   echo "With threads:" $i >>$1

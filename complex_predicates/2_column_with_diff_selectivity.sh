@@ -6,10 +6,10 @@ for i in 1 #5 5 7   1 4 8 16
 do
   echo ""  >>$1 
   echo "With threads:" $i >>$1
-	    for j in 0.6 0.5 0.4 0.3 0.2 0.1 0.05 0.01 0.005 0.001
+	    for j in 0.5 0.4 0.3 0.2 0.1 0.05 0.01 0.005 0.001 0.0005 0.0001
 		do
 		  echo "selectivity of p2:" $j >>$1
-          ./2_column_compare_with_literal_test.x $i 1 17 17 0 1 1 0.7 $j >result.txt
+          ./2_column_compare_with_literal_test.x $i 1 17 17 0 1 1 0.5 $j >result.txt
           cat result.txt |grep "p_s_model"  >>$1
           cat result.txt |grep "Instructions-retired"  >>$1
           cat result.txt |grep "L3Misses"  >>$1

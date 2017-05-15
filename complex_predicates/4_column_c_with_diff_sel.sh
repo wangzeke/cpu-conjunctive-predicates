@@ -2,7 +2,7 @@
 #echo $1    
 echo $1    #output file name.....
 
-for i in 8 # 1 4 5 5 7  16 
+for i in 1 # 4 5 5 7  8 16 
 do
   echo ""  >>$1
   echo "With threads:" $i >>$1
@@ -21,4 +21,4 @@ do
           rm result.txt
 		done  
      done	   
- 
+  

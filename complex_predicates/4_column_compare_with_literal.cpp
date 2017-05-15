@@ -6,6 +6,7 @@
 #include <sys/mman.h> 
 
 //warning: it is important that we use 128-bit vector for 4 columns.
+#include "config.h"
 
 #include "types_simd.h" 
 #include "avx-utility.h" 
@@ -165,7 +166,7 @@ void four_columns_cmp_with_literal_nP_nS(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -173,6 +174,7 @@ void four_columns_cmp_with_literal_nP_nS(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
+#endif
 			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
@@ -338,8 +340,10 @@ void four_columns_cmp_with_literal_nP_nS(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -525,7 +529,7 @@ void four_columns_cmp_with_literal_nP_S(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -533,7 +537,7 @@ void four_columns_cmp_with_literal_nP_S(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
-			
+#endif			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
 				ByteUnit *addr_tmp   = data_1[1] + offset + i;
@@ -698,8 +702,10 @@ void four_columns_cmp_with_literal_nP_S(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -885,7 +891,7 @@ void four_columns_cmp_with_literal_P_nS(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -893,6 +899,7 @@ void four_columns_cmp_with_literal_P_nS(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
+#endif
 			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
@@ -1058,8 +1065,10 @@ void four_columns_cmp_with_literal_P_nS(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -1245,7 +1254,7 @@ void four_columns_cmp_with_literal_P_S(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -1253,6 +1262,7 @@ void four_columns_cmp_with_literal_P_S(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
+#endif
 			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
@@ -1418,8 +1428,10 @@ void four_columns_cmp_with_literal_P_S(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -1606,7 +1618,7 @@ void four_columns_c_cmp_with_literal_nP_nS(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -1614,7 +1626,7 @@ void four_columns_c_cmp_with_literal_nP_nS(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
-			
+#endif			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
 				ByteUnit *addr_tmp   = data_1[1] + offset + i;
@@ -1779,8 +1791,10 @@ void four_columns_c_cmp_with_literal_nP_nS(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -1967,7 +1981,7 @@ void four_columns_c_cmp_with_literal_nP_S(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -1975,6 +1989,7 @@ void four_columns_c_cmp_with_literal_nP_S(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
+#endif
 			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
@@ -2140,8 +2155,9 @@ void four_columns_c_cmp_with_literal_nP_S(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -2328,7 +2344,7 @@ void four_columns_c_cmp_with_literal_P_nS(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -2336,7 +2352,7 @@ void four_columns_c_cmp_with_literal_P_nS(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
-			
+#endif			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
 				ByteUnit *addr_tmp   = data_1[1] + offset + i;
@@ -2501,8 +2517,9 @@ void four_columns_c_cmp_with_literal_P_nS(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
@@ -2689,7 +2706,7 @@ void four_columns_c_cmp_with_literal_P_S(WordUnit* bitmap, WordUnit len,
                                                   agg_success,
                                                   agg_fail); 
 												  
-
+#ifdef PRUNING_ENABLE
           //refine stage.		  
 		  if (!avx_iszero(agg_equal))
 		  {      
@@ -2697,7 +2714,7 @@ void four_columns_c_cmp_with_literal_P_S(WordUnit* bitmap, WordUnit len,
             m_equal_2 = avx_and(m_equal_2, agg_equal);
             m_equal_3 = avx_and(m_equal_3, agg_equal);
             m_equal_4 = avx_and(m_equal_4, agg_equal);
-			
+#endif			
 	        if ( (kNumBytesPerCode_1 > 1) && !avx_iszero( m_equal_1) ) //for the remaining segments of predicate 1.
 			{
 				ByteUnit *addr_tmp   = data_1[1] + offset + i;
@@ -2862,8 +2879,9 @@ void four_columns_c_cmp_with_literal_P_S(WordUnit* bitmap, WordUnit len,
                     }			
                 }						   
 			}
-			
+#ifdef PRUNING_ENABLE			
 		  }
+#endif		  
             /////////////combine the result::::generat the vector result for the above computing....//////////////////////////////
             //AvxUnit m_result         = avx_and(m_less_2, m_greater_1);
 			   AvxUnit m_result_1, m_result_2, m_result_3, m_result_4, m_result_tmp, m_result_tmp_1, m_result;
