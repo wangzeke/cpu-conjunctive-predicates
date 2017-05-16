@@ -1,0 +1,84 @@
+Model (0_MMX, 1_AVX, 2_AVX2): 0
+BytesReadFromMC: 1010256960
+BytesWrittenToMC: 144350592
+byte-level predicate, threads: 1, codes_per_ns:  7.336
+BytesReadFromMC: 1038755200
+BytesWrittenToMC: 172746112
+byte-level predicate, threads: 2, codes_per_ns: 14.071
+BytesReadFromMC: 1063128768
+BytesWrittenToMC: 197205184
+byte-level predicate, threads: 3, codes_per_ns: 17.548
+BytesReadFromMC: 1092327296
+BytesWrittenToMC: 227412928
+byte-level predicate, threads: 4, codes_per_ns: 20.709
+BytesReadFromMC: 1104516992
+BytesWrittenToMC: 238109120
+byte-level predicate, threads: 5, codes_per_ns: 21.901
+BytesReadFromMC: 1111239872
+BytesWrittenToMC: 246320320
+byte-level predicate, threads: 6, codes_per_ns: 21.971
+BytesReadFromMC: 1113780736
+BytesWrittenToMC: 250309952
+byte-level predicate, threads: 7, codes_per_ns: 22.161
+BytesReadFromMC: 1118494720
+BytesWrittenToMC: 253252224
+byte-level predicate, threads: 8, codes_per_ns: 21.876
+BytesReadFromMC: 1128534208
+BytesWrittenToMC: 269623552
+byte-level predicate, threads: 16, codes_per_ns: 21.129
+Model (0_MMX, 1_AVX, 2_AVX2): 1
+BytesReadFromMC: 1012044416
+BytesWrittenToMC: 144938624
+byte-level predicate, threads: 1, codes_per_ns:  8.770
+BytesReadFromMC: 1046181824
+BytesWrittenToMC: 180533248
+byte-level predicate, threads: 2, codes_per_ns: 17.942
+BytesReadFromMC: 1078332224
+BytesWrittenToMC: 213068096
+byte-level predicate, threads: 3, codes_per_ns: 21.093
+BytesReadFromMC: 1095507008
+BytesWrittenToMC: 231228992
+byte-level predicate, threads: 4, codes_per_ns: 22.222
+BytesReadFromMC: 1106294784
+BytesWrittenToMC: 240953856
+byte-level predicate, threads: 5, codes_per_ns: 22.397
+BytesReadFromMC: 1111635776
+BytesWrittenToMC: 246755392
+byte-level predicate, threads: 6, codes_per_ns: 22.323
+BytesReadFromMC: 1119230400
+BytesWrittenToMC: 254925568
+byte-level predicate, threads: 7, codes_per_ns: 21.942
+BytesReadFromMC: 1120342656
+BytesWrittenToMC: 255503552
+byte-level predicate, threads: 8, codes_per_ns: 21.792
+BytesReadFromMC: 1130105408
+BytesWrittenToMC: 265215360
+byte-level predicate, threads: 16, codes_per_ns: 21.173
+Model (0_MMX, 1_AVX, 2_AVX2): 2
+BytesReadFromMC: 1010696960
+BytesWrittenToMC: 145222656
+byte-level predicate, threads: 1, codes_per_ns: 10.068
+BytesReadFromMC: 1053001664
+BytesWrittenToMC: 187259456
+byte-level predicate, threads: 2, codes_per_ns: 19.403
+BytesReadFromMC: 1088898368
+BytesWrittenToMC: 221385984
+byte-level predicate, threads: 3, codes_per_ns: 21.375
+BytesReadFromMC: 1099020288
+BytesWrittenToMC: 234501632
+byte-level predicate, threads: 4, codes_per_ns: 22.536
+BytesReadFromMC: 1108232512
+BytesWrittenToMC: 240658240
+byte-level predicate, threads: 5, codes_per_ns: 22.499
+BytesReadFromMC: 1115400320
+BytesWrittenToMC: 250528704
+byte-level predicate, threads: 6, codes_per_ns: 22.129
+BytesReadFromMC: 1120447616
+BytesWrittenToMC: 259785216
+byte-level predicate, threads: 7, codes_per_ns: 21.699
+BytesReadFromMC: 1119290304
+BytesWrittenToMC: 254887936
+byte-level predicate, threads: 8, codes_per_ns: 21.762
+BytesReadFromMC: 1130260608
+BytesWrittenToMC: 269956480
+byte-level predicate, threads: 16, codes_per_ns: 21.191
