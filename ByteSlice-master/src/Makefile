@@ -5,7 +5,7 @@
 CC=icc
 OPT= -g -O3 -pthread -fPIC -std=c++11 -fopenmp -lrt 
 
-all: Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x 4_byteslice_column_block_test.x 3_byteslice_column_block_test.x 2_byteslice_column_block_test.x byteslice_column_block_test.x byteslice_column_block.o bitvector.o bitvector_block.o bitvector_iterator.o naive_column_block.o sequential_binary_file.o
+all: Q19.x Q17.x Q10.x Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x 4_byteslice_column_block_test.x 3_byteslice_column_block_test.x 2_byteslice_column_block_test.x byteslice_column_block_test.x byteslice_column_block.o bitvector.o bitvector_block.o bitvector_iterator.o naive_column_block.o sequential_binary_file.o
 #
 
 byteslice_column_block.o: byteslice_column_block.h byteslice_column_block.cpp avx-utility.h column_block.h  
@@ -65,7 +65,9 @@ Q8.x: byteslice_column_block.h Q8.cpp avx-utility.h column_block.h byteslice_col
 Q12.x: byteslice_column_block.h Q12.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
 	$(CC) $(OPT) Q12.cpp -o Q12.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
 
-	
+Q10.x: byteslice_column_block.h Q10.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
+	$(CC) $(OPT) Q10.cpp -o Q10.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
+		
 Q1.x: byteslice_column_block.h Q1.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
 	$(CC) $(OPT) Q1.cpp -o Q1.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
 	
@@ -75,7 +77,12 @@ Q14.x: byteslice_column_block.h Q14.cpp avx-utility.h column_block.h byteslice_c
 Q15.x: byteslice_column_block.h Q15.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
 	$(CC) $(OPT) Q15.cpp -o Q15.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
 	
+Q17.x: byteslice_column_block.h Q17.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
+	$(CC) $(OPT) Q17.cpp -o Q17.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
 	
+Q19.x: byteslice_column_block.h Q19.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
+	$(CC) $(OPT) Q19.cpp -o Q19.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
+		
 haihang_test.x: byteslice_column_block.h haihang_test.cpp avx-utility.h column_block.h byteslice_column_block.o cpu_mapping.o bitvector.o bitvector_block.o bitvector_iterator.o sequential_binary_file.o  
 	$(CC) $(OPT) haihang_test.cpp -o haihang_test.x byteslice_column_block.o bitvector.o bitvector_block.o cpu_mapping.o bitvector_iterator.o sequential_binary_file.o libpcm_2_11.a
 	

@@ -16,9 +16,9 @@ def pomoto(old_list,new_list):
 
 
 
-#filename_list = ["name.txt"]
+#filename_list = ["n1_name.txt", "n2_name.txt", "r1_name.txt", "r2_name.txt", "p_type.txt", "c_mktsegment.txt"]
+filename_list = ["l_returnflag.txt", "p_brand.txt", , "p_container.txt", "l_quantity.txt", "l_size.txt"]
 
-filename_list = ["n1_name.txt", "n2_name.txt", "r1_name.txt", "r2_name.txt", "p_type.txt", "c_mktsegment.txt"]
 output_filename_prefix = "output_"
 dict_filename_prefix = "dict_"
 
@@ -45,7 +45,8 @@ for k in range(len(filename_list)):
             raw_name.append(name_value)
     name1.close()
 
-    print "load finished"
+	print filename
+    print ":::load finished"
     
     raw_sorted_name = sorted(raw_name)
 
@@ -55,7 +56,7 @@ for k in range(len(filename_list)):
 
     print "clean date get"
 
-    
+     
     with open(output_filename, "w") as f1:
         for i in range(len(raw_name)):
             f1.write(str(1 + clean_name.index(raw_name[i])))

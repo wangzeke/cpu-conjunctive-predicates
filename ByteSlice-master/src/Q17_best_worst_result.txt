@@ -1,0 +1,90 @@
+Execution model:  0
+Threads: 1, tuples = 60490115, execution_model = 0
+=====print the profiling result==========
+Instructions-retired 54413552
+Active-cycles 52819042
+IPC 1.03019
+L2Misses 740554
+L3Misses 445644
+L2HitRatio 0.141835
+L3HitRatio 0.398229
+CyclesLostDueL2CacheMisses 0.199467
+CyclesLostDueL3CacheMisses 1.51869
+BytesReadFromMC: 136834240
+BytesWrittenToMC: 28212992
+THREE: 17 codes, time: 14200060.000, codes_per_ns:  4.260
+Execution model:  1
+Threads: 1, tuples = 60490115, execution_model = 1
+=====print the profiling result==========
+Instructions-retired 56280886
+Active-cycles 43729360
+IPC 1.28703
+L2Misses 485681
+L3Misses 268922
+L2HitRatio 0.299253
+L3HitRatio 0.446299
+CyclesLostDueL2CacheMisses 0.178585
+CyclesLostDueL3CacheMisses 1.10694
+BytesReadFromMC: 69915648
+BytesWrittenToMC: 20636800
+THREE: 17 codes, time: 11543069.000, codes_per_ns:  5.240
+Execution model:  2
+Threads: 1, tuples = 60490115, execution_model = 2
+=====print the profiling result==========
+Instructions-retired 53490666
+Active-cycles 57743010
+IPC 0.926357
+L2Misses 715771
+L3Misses 426700
+L2HitRatio 0.175153
+L3HitRatio 0.40386
+CyclesLostDueL2CacheMisses 0.178922
+CyclesLostDueL3CacheMisses 1.33014
+BytesReadFromMC: 136674112
+BytesWrittenToMC: 28164352
+THREE: 17 codes, time: 15612412.000, codes_per_ns:  3.874
+Execution model:  3
+Threads: 1, tuples = 60490115, execution_model = 3
+=====print the profiling result==========
+Instructions-retired 49995646
+Active-cycles 20715039
+IPC 2.4135
+L2Misses 251746
+L3Misses 16277
+L2HitRatio 0.576809
+L3HitRatio 0.935344
+CyclesLostDueL2CacheMisses 0.407933
+CyclesLostDueL3CacheMisses 0.141436
+BytesReadFromMC: 2692864
+BytesWrittenToMC: 7554304
+THREE: 17 codes, time: 5097919.000, codes_per_ns: 11.866
+Execution model:  4
+Threads: 1, tuples = 60490115, execution_model = 4
+=====print the profiling result==========
+Instructions-retired 54303967
+Active-cycles 49369675
+IPC 1.09995
+L2Misses 475936
+L3Misses 263735
+L2HitRatio 0.277051
+L3HitRatio 0.44586
+CyclesLostDueL2CacheMisses 0.154831
+CyclesLostDueL3CacheMisses 0.961568
+BytesReadFromMC: 69650752
+BytesWrittenToMC: 20065664
+THREE: 17 codes, time: 13208010.000, codes_per_ns:  4.580
+Execution model:  5
+Threads: 1, tuples = 60490115, execution_model = 5
+=====print the profiling result==========
+Instructions-retired 50718691
+Active-cycles 21262071
+IPC 2.38541
+L2Misses 244379
+L3Misses 17433
+L2HitRatio 0.593617
+L3HitRatio 0.928664
+CyclesLostDueL2CacheMisses 0.383382
+CyclesLostDueL3CacheMisses 0.147584
+BytesReadFromMC: 2798144
+BytesWrittenToMC: 6920768
+THREE: 17 codes, time: 5267860.000, codes_per_ns: 11.483

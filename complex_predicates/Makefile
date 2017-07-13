@@ -8,7 +8,7 @@ OPT=  -O3 -pthread -fPIC -fopenmp -std=c++11 -lrt
 COMMONTOOL = thread_tool.o rand_tool.o file_tool.o cpu_mapping.o huge_page.o memory_tool.o libpcm_2_11.a
 
 
-all: Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x
+all: Q19.x Q17.x Q10.x Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x
  
 #####################common functions##########################################
 rand_tool.o: rand_tool.cpp   
@@ -77,7 +77,9 @@ column_compare_with_literal_test.x: column_compare_with_literal_test.cpp avx-uti
 5_column_compare_with_literal_test.x: 5_column_compare_with_literal_test.cpp avx-utility.h types_simd.h $(COMMONTOOL) common_tool.h 5_column_compare_with_literal.o 
 	$(CC) $(OPT) 5_column_compare_with_literal_test.cpp -o 5_column_compare_with_literal_test.x $(COMMONTOOL) 5_column_compare_with_literal.o
 ###############################################################	
-
+Q10.x: Q10.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h  
+	$(CC) $(OPT) Q10.cpp -o Q10.x $(COMMONTOOL) 
+	
 Q1.x: Q1.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h  
 	$(CC) $(OPT) Q1.cpp -o Q1.x $(COMMONTOOL) 
 	
@@ -87,6 +89,11 @@ Q14.x: Q14.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h
 Q15.x: Q15.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h  
 	$(CC) $(OPT) Q15.cpp -o Q15.x $(COMMONTOOL) 
 
+Q17.x: Q17.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h  
+	$(CC) $(OPT) Q17.cpp -o Q17.x $(COMMONTOOL) 
+
+Q19.x: Q19.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h  
+	$(CC) $(OPT) Q19.cpp -o Q19.x $(COMMONTOOL) 
 
 
 Q3.x: Q3.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h 3_column_compare_with_literal.o 
