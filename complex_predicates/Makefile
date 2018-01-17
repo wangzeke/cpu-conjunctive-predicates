@@ -8,7 +8,7 @@ OPT=  -O3 -pthread -fPIC -fopenmp -std=c++11 -lrt
 COMMONTOOL = thread_tool.o rand_tool.o file_tool.o cpu_mapping.o huge_page.o memory_tool.o libpcm_2_11.a
 
 
-all: Q19.x Q17.x Q10.x Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x
+all: Q19.x Q17.x Q10.x Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x 4_column_compare_full_width.x
  
 #####################common functions##########################################
 rand_tool.o: rand_tool.cpp   
@@ -27,7 +27,8 @@ memory_tool.o: memory_tool.cpp
 	$(CC) $(OPT) -c memory_tool.cpp
 #########################end of common functions################################
 
-
+4_column_compare_full_width.x: 4_column_compare_full_width.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h 
+	$(CC) $(OPT) 4_column_compare_full_width.cpp -o 4_column_compare_full_width.x $(COMMONTOOL)
 
 # check the impact of hardware prefetcher, branch and PCM. Also the one column case.
 impact_of_branch_on_cpu.x: impact_of_branch_on_cpu.cpp avx-utility.h types.h $(COMMONTOOL) common_tool.h 
