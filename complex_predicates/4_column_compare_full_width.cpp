@@ -126,10 +126,10 @@ void first_compare_32b_predicate(WordUnit *bitvector, uint32_t *data, uint32_t l
     //unsigned char mask = c_vector[i>>3];
     //if (mask == 0 ) 
     //  break;
-    __m256i v_data       = _mm256_loadu_si256 ( (__m256i *) (data+i) );
+    __m256i v_data       = _mm256_loadu_si256( (__m256i *) (data+i) );
     __m256i v_result     = _mm256_cmpgt_epi32( v_literal, v_data );
     int result           = _mm256_movemask_ps( _mm256_castsi256_ps(v_result) );
-    c_vector[i>>3]       = (char)result;
+    c_vector[i/8]        = (char)result;
   }
 }
 
@@ -141,15 +141,15 @@ void compare_32b_predicate(WordUnit *bitvector, uint32_t *data, uint32_t literal
 
   for (uint64_t i = 0; i < len; i += 8)
   {
-    unsigned char mask = c_vector[i>>3];
+    unsigned char mask = c_vector[i/8];
     
     if (mask == 0 ) 
-      break;
+      continue;
 
     __m256i v_data       = _mm256_loadu_si256 ( (__m256i *) (data+i) );
     __m256i v_result     = _mm256_cmpgt_epi32( v_literal, v_data );
     int result           = _mm256_movemask_ps( _mm256_castsi256_ps(v_result) );
-    c_vector[i>>3]       = (mask & ((char)result) );
+    c_vector[i/8]        = (mask & ((char)result) );
   }
 }
 
@@ -188,7 +188,7 @@ void *run(void *arg)
   int kNumBytesPerCode_4       = (T4_bit_width+7)/8;
 	int kNumPaddingBits_4        = kNumBytesPerCode_4 * 8 - T4_bit_width;
 
-printf("1\n");
+//printf("1\n");
   //uint32_t literal_1           = (uint32_t) ( (1-T1_selevitity) * (float)((1<<T1_bit_width)-1) ); //do greater than literal...
 	uint32_t literal_1           = (uint32_t) (    T1_selevitity  * (float)((1<<T1_bit_width)-1) );   //do less    than literal...
   uint32_t literal_2           = (uint32_t) (    T2_selevitity  * (float)((1<<T1_bit_width)-1) );   //do less    than literal...
@@ -232,7 +232,7 @@ printf("1\n");
          printf ( "output bitvector_malloc fails\n");
          return NULL;
    }
-printf("2\n");
+//printf("2\n");
    //  printf("before set tuple.\n"); 
 	 
    //assign random value for two columns....
@@ -246,13 +246,13 @@ printf("2\n");
       uint32_t tmp_4 = rand32_next(gen) & ( (1<<T1_bit_width) - 1 ); 
       original_4[i]  = tmp_4; //
    }
-printf("3\n");
+//printf("3\n");
   //  printf("after set data_.\n");  
 	
    for(i=0; i < T1_len_aligned/64; i++){
       bitvector[i] = 0; //it is used to load to L2 TLB when huge table is used. 
    }
-printf("4\n");
+//printf("4\n");
 
   for (uint32_t p_s_model = p_s_model_start; p_s_model <= p_s_model_end; p_s_model++)	
   {	
@@ -282,8 +282,8 @@ printf("4\n");
 	  //four_columns_cmp_with_literal_rp_nP_nS four_columns_cmp_with_literal_rp_best_nP_nS
     first_compare_32b_predicate(bitvector, original_1, literal_1, T1_len_aligned);
           compare_32b_predicate(bitvector, original_2, literal_2, T1_len_aligned);
-          compare_32b_predicate(bitvector, original_3, literal_3, T1_len_aligned);
-          compare_32b_predicate(bitvector, original_4, literal_4, T1_len_aligned);
+          //compare_32b_predicate(bitvector, original_3, literal_3, T1_len_aligned);
+          //compare_32b_predicate(bitvector, original_4, literal_4, T1_len_aligned);
 
 								 
 	///////////////////////third barrier to make sure all the threads have finished the execution/////////////////////		
@@ -312,7 +312,9 @@ printf("4\n");
 	 {   
 		 for (size_t ii = 0; ii < T1_len; ii++) //
 		{
-			bool real = ( (original_1[ii] < literal_1) && (original_2[ii] < literal_2) && (original_3[ii] < literal_3) && (original_4[ii] < literal_4)); 
+      //bool real = (original_1[ii] < literal_1);
+      bool real = ( (original_1[ii] < literal_1) && (original_2[ii] < literal_2) );
+			//bool real = ( (original_1[ii] < literal_1) && (original_2[ii] < literal_2) && (original_3[ii] < literal_3) && (original_4[ii] < literal_4)); 
 		  bool eval  = GetBit(bitvector, ii); //bvblock->GetBit(ii); 
       if (real !=  eval )
 			{

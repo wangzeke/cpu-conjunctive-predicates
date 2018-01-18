@@ -45,7 +45,7 @@ uint32_t max(uint32_t x, uint32_t y) { return x > y ? x : y; }
 uint64_t thread_time(void)
 {
 	struct timespec t;
-	assert(clock_gettime(CLOCK_THREAD_CPUTIME_ID, &t) == 0);
+	assert(clock_gettime(CLOCK_MONOTONIC, &t) == 0); //CLOCK_THREAD_CPUTIME_ID
 	return t.tv_sec * 1000 * 1000 * 1000 + t.tv_nsec;
 }
 
