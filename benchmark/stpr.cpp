@@ -129,13 +129,13 @@ void main(int argc, char **argv)
 	
 
 	double f_result[200];
-	float selectivity_tmp = 0.04;
+	float selectivity_tmp = 0.00;
   
   
-	for (int jj = 0; jj < 25; jj++)
+	for (int jj = 0; jj <= 100; jj++)
 	{   
 		selectivity      = selectivity_tmp;
-		selectivity_tmp  = selectivity_tmp + 0.04;
+		selectivity_tmp  = selectivity_tmp + 0.01;
 		uint32_t literal =  (uint32_t)( selectivity*(float)(1<<8) ); //do greater than literal...
 		
 	#ifdef INTEL_PCM_ENABLE		
@@ -221,15 +221,15 @@ void main(int argc, char **argv)
 		PCM_printResults();		
 		PCM_cleanup();
 	#endif
-		//f_result[jj] = (double)t1/(double)(tuples/32);
+		f_result[jj] = (double)t1/(double)(tuples/32);
 		printf("(%d) time required for each code is %f ns/code \n", u_sum, (double)t1/(double)tuples );
 	}
 
 
-	//for (uint32_t jj = 0; jj < 101; jj++)
-    //{
-	//	printf("%d: %f\n", jj, f_result[jj]);
-	//}
+	for (uint32_t jj = 0; jj < 101; jj++)
+    {
+		printf("%d: %f\n", jj, f_result[jj]);
+	}
 
 }
 
