@@ -128,7 +128,7 @@ void main(int argc, char **argv)
     }    
 	
 
-	double f_result[200];
+	double f_result[200];         double s_result[200];
 	float selectivity_tmp = 0.00;
   
   
@@ -221,14 +221,15 @@ void main(int argc, char **argv)
 		PCM_printResults();		
 		PCM_cleanup();
 	#endif
-		f_result[jj] = (double)t1/(double)(tuples/32);
+		f_result[jj] = (double)t1/(double)(tuples);
+		s_result[jj] = (float)sel_counter/(float)(tuples/32);
 		printf("(%d) time required for each code is %f ns/code \n", u_sum, (double)t1/(double)tuples );
 	}
 
 
 	for (uint32_t jj = 0; jj < 101; jj++)
     {
-		printf("%d: %f\n", jj, f_result[jj]);
+		printf("%3d: selectivity: %f, cost: %f ns/code.\n", jj, s_result[jj], f_result[jj]);
 	}
 
 }
