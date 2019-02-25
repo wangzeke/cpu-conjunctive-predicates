@@ -21,7 +21,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <immintrin.h>
-
+#include <cmath>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -227,9 +227,9 @@ void main(int argc, char **argv)
 	}
 
 
-	for (uint32_t jj = 0; jj < 101; jj++)
+	for (uint32_t jj = 0; jj < 101; jj++) //std::
     {
-		printf("%3d: selectivity: %f, cost: %f ns/code.\n", jj, s_result[jj], f_result[jj]);
+		printf("%3d: vec_select: %f, code_select: %f cost: %f ns/code.\n", jj, s_result[jj], ( 1.0 - pow((1.0-s_result[jj]), 1.0/32.0) ), f_result[jj]);
 	}
 
 }
