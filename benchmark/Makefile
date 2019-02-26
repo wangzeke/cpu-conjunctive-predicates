@@ -8,7 +8,7 @@ OPT=  -O3 -pthread -fPIC -fopenmp -std=c++11 -lrt -I../complex_predicates/
 COMMONTOOL = thread_tool.o rand_tool.o file_tool.o cpu_mapping.o huge_page.o memory_tool.o ../libpcm_2_11.a 
 
 
-all: stpr.x 
+all: stpr.x sts.x
  
 #####################common functions########################################## ../complex_predicates/
 rand_tool.o: ../complex_predicates/rand_tool.cpp   
@@ -28,6 +28,9 @@ memory_tool.o: ../complex_predicates/memory_tool.cpp
 # check the impact of hardware prefetcher, branch and PCM. Also the one column case.  common_tool.h avx-utility.h types.h 
 stpr.x: stpr.cpp $(COMMONTOOL) 
 	$(CC) $(OPT) stpr.cpp -o stpr.x $(COMMONTOOL)
+
+sts.x: sts.cpp $(COMMONTOOL) 
+	$(CC) $(OPT) sts.cpp -o sts.x $(COMMONTOOL)	
 #####################end of motivations##########################################	
 
 clean:
