@@ -1,0 +1,177 @@
+
+With threads: 1
+1, selectivity of p2: 0.05
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.050000
+Instructions-retired 957326603
+BytesReadFromMC: 2598806528
+BytesWrittenToMC: 162713472
+17-17-bit codes, time: 270728867.000, codes_per_ns:  3.694
+
+2, selectivity of p2: 0.05
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.050000
+Instructions-retired 957412085
+BytesReadFromMC: 2598624000
+BytesWrittenToMC: 162723392
+17-17-bit codes, time: 270521819.000, codes_per_ns:  3.697
+
+3, selectivity of p2: 0.05
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.050000
+Instructions-retired 957266778
+BytesReadFromMC: 2598350592
+BytesWrittenToMC: 162670080
+17-17-bit codes, time: 270682716.000, codes_per_ns:  3.694
+
+4, selectivity of p2: 0.05
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.050000
+Instructions-retired 957417284
+BytesReadFromMC: 2598646400
+BytesWrittenToMC: 162774336
+17-17-bit codes, time: 270703635.000, codes_per_ns:  3.694
+
+5, selectivity of p2: 0.05
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.050000
+Instructions-retired 957342221
+BytesReadFromMC: 2598179008
+BytesWrittenToMC: 162712192
+17-17-bit codes, time: 271762493.000, codes_per_ns:  3.680
+
+1, selectivity of p2: 0.04
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.040000
+Instructions-retired 956720849
+BytesReadFromMC: 2592405056
+BytesWrittenToMC: 162697216
+17-17-bit codes, time: 268796638.000, codes_per_ns:  3.720
+
+2, selectivity of p2: 0.04
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.040000
+Instructions-retired 956592857
+BytesReadFromMC: 2590539776
+BytesWrittenToMC: 162731072
+17-17-bit codes, time: 271160702.000, codes_per_ns:  3.688
+
+3, selectivity of p2: 0.04
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.040000
+Instructions-retired 956689233
+BytesReadFromMC: 2591695936
+BytesWrittenToMC: 162677376
+17-17-bit codes, time: 269627784.000, codes_per_ns:  3.709
+
+4, selectivity of p2: 0.04
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.040000
+Instructions-retired 956562162
+BytesReadFromMC: 2591758528
+BytesWrittenToMC: 162642624
+17-17-bit codes, time: 267927051.000, codes_per_ns:  3.732
+
+5, selectivity of p2: 0.04
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.040000
+Instructions-retired 956604762
+BytesReadFromMC: 2591402048
+BytesWrittenToMC: 162694272
+17-17-bit codes, time: 269424809.000, codes_per_ns:  3.712
+
+1, selectivity of p2: 0.03
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.030000
+Instructions-retired 955415507
+BytesReadFromMC: 2580934080
+BytesWrittenToMC: 162627264
+17-17-bit codes, time: 267330716.000, codes_per_ns:  3.741
+
+2, selectivity of p2: 0.03
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.030000
+Instructions-retired 955573653
+BytesReadFromMC: 2580998784
+BytesWrittenToMC: 162671104
+17-17-bit codes, time: 266186455.000, codes_per_ns:  3.757
+
+3, selectivity of p2: 0.03
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.030000
+Instructions-retired 955817437
+BytesReadFromMC: 2582245184
+BytesWrittenToMC: 162675904
+17-17-bit codes, time: 266337301.000, codes_per_ns:  3.755
+
+4, selectivity of p2: 0.03
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.030000
+Instructions-retired 955569264
+BytesReadFromMC: 2582109568
+BytesWrittenToMC: 162643904
+17-17-bit codes, time: 267066503.000, codes_per_ns:  3.744
+
+5, selectivity of p2: 0.03
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.030000
+Instructions-retired 955527801
+BytesReadFromMC: 2581615168
+BytesWrittenToMC: 162615552
+17-17-bit codes, time: 267142871.000, codes_per_ns:  3.743
+
+1, selectivity of p2: 0.004
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.004000
+Instructions-retired 953506149
+BytesReadFromMC: 2562688000
+BytesWrittenToMC: 162607424
+17-17-bit codes, time: 261373143.000, codes_per_ns:  3.826
+
+2, selectivity of p2: 0.004
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.004000
+Instructions-retired 953490224
+BytesReadFromMC: 2563271744
+BytesWrittenToMC: 162480064
+17-17-bit codes, time: 260745696.000, codes_per_ns:  3.835
+
+3, selectivity of p2: 0.004
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.004000
+Instructions-retired 953523124
+BytesReadFromMC: 2563207808
+BytesWrittenToMC: 162567104
+17-17-bit codes, time: 261474525.000, codes_per_ns:  3.824
+
+4, selectivity of p2: 0.004
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.004000
+Instructions-retired 953668713
+BytesReadFromMC: 2563566976
+BytesWrittenToMC: 162640896
+17-17-bit codes, time: 261181881.000, codes_per_ns:  3.829
+
+5, selectivity of p2: 0.004
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.004000
+Instructions-retired 953359206
+BytesReadFromMC: 2562391744
+BytesWrittenToMC: 162602112
+17-17-bit codes, time: 261459590.000, codes_per_ns:  3.825
+
+1, selectivity of p2: 0.0003
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.000300
+Instructions-retired 953119342
+BytesReadFromMC: 2559865280
+BytesWrittenToMC: 162617600
+17-17-bit codes, time: 260021119.000, codes_per_ns:  3.846
+
+2, selectivity of p2: 0.0003
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.000300
+Instructions-retired 953209449
+BytesReadFromMC: 2560191616
+BytesWrittenToMC: 162687616
+17-17-bit codes, time: 261378698.000, codes_per_ns:  3.826
+
+3, selectivity of p2: 0.0003
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.000300
+Instructions-retired 953129548
+BytesReadFromMC: 2560138304
+BytesWrittenToMC: 162572864
+17-17-bit codes, time: 260436865.000, codes_per_ns:  3.840
+
+4, selectivity of p2: 0.0003
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.000300
+Instructions-retired 953233694
+BytesReadFromMC: 2559749504
+BytesWrittenToMC: 162638720
+17-17-bit codes, time: 259542618.000, codes_per_ns:  3.853
+
+5, selectivity of p2: 0.0003
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.000300
+Instructions-retired 953128157
+BytesReadFromMC: 2560018624
+BytesWrittenToMC: 162602688
+17-17-bit codes, time: 260261140.000, codes_per_ns:  3.842
+

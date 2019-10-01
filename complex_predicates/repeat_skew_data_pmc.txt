@@ -1,0 +1,212 @@
+
+With threads: 1
+1_Literal of p2: 396
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 936633816
+BytesReadFromMC: 2323854464
+BytesWrittenToMC: 162341120
+17-17-bit codes, time: 213486966.000, codes_per_ns:  4.684
+
+2_Literal of p2: 396
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 937072970
+BytesReadFromMC: 2324558912
+BytesWrittenToMC: 162483008
+17-17-bit codes, time: 213446994.000, codes_per_ns:  4.685
+
+3_Literal of p2: 396
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 936383953
+BytesReadFromMC: 2323186560
+BytesWrittenToMC: 162213056
+17-17-bit codes, time: 213235325.000, codes_per_ns:  4.690
+
+4_Literal of p2: 396
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 936399571
+BytesReadFromMC: 2322878208
+BytesWrittenToMC: 162184384
+17-17-bit codes, time: 213257800.000, codes_per_ns:  4.689
+
+5_Literal of p2: 396
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 936596544
+BytesReadFromMC: 2323761280
+BytesWrittenToMC: 162180352
+17-17-bit codes, time: 213259458.000, codes_per_ns:  4.689
+
+1_Literal of p2: 924
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 933595333
+BytesReadFromMC: 2299320192
+BytesWrittenToMC: 162171392
+17-17-bit codes, time: 207609962.000, codes_per_ns:  4.817
+
+2_Literal of p2: 924
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 933644733
+BytesReadFromMC: 2298953600
+BytesWrittenToMC: 162128064
+17-17-bit codes, time: 207763349.000, codes_per_ns:  4.813
+
+3_Literal of p2: 924
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 933567679
+BytesReadFromMC: 2298798336
+BytesWrittenToMC: 162167104
+17-17-bit codes, time: 207468055.000, codes_per_ns:  4.820
+
+4_Literal of p2: 924
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 933628923
+BytesReadFromMC: 2298901760
+BytesWrittenToMC: 162139520
+17-17-bit codes, time: 207376477.000, codes_per_ns:  4.822
+
+5_Literal of p2: 924
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 933565644
+BytesReadFromMC: 2298807232
+BytesWrittenToMC: 162130176
+17-17-bit codes, time: 207458112.000, codes_per_ns:  4.820
+
+1_Literal of p2: 1057
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1132524118
+BytesReadFromMC: 3138376192
+BytesWrittenToMC: 162900992
+17-17-bit codes, time: 267132220.000, codes_per_ns:  3.743
+
+2_Literal of p2: 1057
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1132452633
+BytesReadFromMC: 3138102016
+BytesWrittenToMC: 162787840
+17-17-bit codes, time: 267108288.000, codes_per_ns:  3.744
+
+3_Literal of p2: 1057
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1132479109
+BytesReadFromMC: 3138124352
+BytesWrittenToMC: 162856512
+17-17-bit codes, time: 268264264.000, codes_per_ns:  3.728
+
+4_Literal of p2: 1057
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1132418249
+BytesReadFromMC: 3138131904
+BytesWrittenToMC: 162858560
+17-17-bit codes, time: 267032264.000, codes_per_ns:  3.745
+
+5_Literal of p2: 1057
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1132381901
+BytesReadFromMC: 3138260928
+BytesWrittenToMC: 162846464
+17-17-bit codes, time: 266872715.000, codes_per_ns:  3.747
+
+1_Literal of p2: 2244
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 954564661
+BytesReadFromMC: 2465553536
+BytesWrittenToMC: 162451008
+17-17-bit codes, time: 246188266.000, codes_per_ns:  4.062
+
+2_Literal of p2: 2244
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 954735374
+BytesReadFromMC: 2466223424
+BytesWrittenToMC: 162522304
+17-17-bit codes, time: 246280279.000, codes_per_ns:  4.060
+
+3_Literal of p2: 2244
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 954727151
+BytesReadFromMC: 2465747264
+BytesWrittenToMC: 162463872
+17-17-bit codes, time: 245591965.000, codes_per_ns:  4.072
+
+4_Literal of p2: 2244
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 954711859
+BytesReadFromMC: 2466153984
+BytesWrittenToMC: 162452928
+17-17-bit codes, time: 245756031.000, codes_per_ns:  4.069
+
+5_Literal of p2: 2244
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 954627166
+BytesReadFromMC: 2465932672
+BytesWrittenToMC: 162434880
+17-17-bit codes, time: 246560306.000, codes_per_ns:  4.056
+
+1_Literal of p2: 4092
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 942587063
+BytesReadFromMC: 2366461696
+BytesWrittenToMC: 162281152
+17-17-bit codes, time: 227027619.000, codes_per_ns:  4.405
+
+2_Literal of p2: 4092
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 942633115
+BytesReadFromMC: 2366368832
+BytesWrittenToMC: 162328768
+17-17-bit codes, time: 226818868.000, codes_per_ns:  4.409
+
+3_Literal of p2: 4092
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 942648937
+BytesReadFromMC: 2366459840
+BytesWrittenToMC: 162288768
+17-17-bit codes, time: 226900330.000, codes_per_ns:  4.407
+
+4_Literal of p2: 4092
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 942561190
+BytesReadFromMC: 2366245504
+BytesWrittenToMC: 162289920
+17-17-bit codes, time: 227197693.000, codes_per_ns:  4.401
+
+5_Literal of p2: 4092
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 942577128
+BytesReadFromMC: 2366354752
+BytesWrittenToMC: 162299776
+17-17-bit codes, time: 226862050.000, codes_per_ns:  4.408
+
+1_Literal of p2: 4500
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1061798963
+BytesReadFromMC: 3066515200
+BytesWrittenToMC: 162975232
+17-17-bit codes, time: 289752088.000, codes_per_ns:  3.451
+
+2_Literal of p2: 4500
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1061687787
+BytesReadFromMC: 3066293952
+BytesWrittenToMC: 162884480
+17-17-bit codes, time: 289569823.000, codes_per_ns:  3.453
+
+3_Literal of p2: 4500
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1061846237
+BytesReadFromMC: 3067111552
+BytesWrittenToMC: 162914496
+17-17-bit codes, time: 289375243.000, codes_per_ns:  3.456
+
+4_Literal of p2: 4500
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1061533649
+BytesReadFromMC: 3065876992
+BytesWrittenToMC: 162862144
+17-17-bit codes, time: 289392191.000, codes_per_ns:  3.456
+
+5_Literal of p2: 4500
+p_s_model = 1, T1_selevitity = 0.500000, T2_selevitity = 0.500000
+Instructions-retired 1061948765
+BytesReadFromMC: 3066722048
+BytesWrittenToMC: 163031360
+17-17-bit codes, time: 289313480.000, codes_per_ns:  3.456
+
