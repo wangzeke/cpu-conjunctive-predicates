@@ -36,7 +36,7 @@ gen_alphabet (unsigned int size)
 
     /* populate */
     for (unsigned int i = 0; i < size; i++)
-        alphabet[i] = i+1;   /* don't let 0 be in the alphabet */
+        alphabet[i] = i;   /* don't let 0 be in the alphabet */
 
     /* permute */
     for (unsigned int i = size-1; i > 0; i--)
