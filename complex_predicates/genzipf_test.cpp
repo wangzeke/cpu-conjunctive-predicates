@@ -24,28 +24,55 @@ void main(int argc, char **argv)
 	uint32_t tuples          = 1000*1000*1000;
 	uint32_t*zipf_data       = (uint32_t*)malloc(tuples*sizeof(uint32_t));
 
-	gen_zipf(tuples, alphabet_size, zipf_factor, zipf_data);
-	printf("zipf data is generated.\n");
-
-	ofstream myfile ("skew_data.txt");
-
 
 	uint32_t count[NUM]       = {0};
-	for (uint32_t i = 0; i < tuples; i++)
-	{	
-		uint32_t cmp_base = 132;
-		uint32_t cmp_inc  = 132;
-		for (uint32_t j = 0; j < NUM; j++)
-		{
-			if (zipf_data[i] < cmp_base)
+	//
+	if (model == 0)
+	{
+		ofstream myfile ("skew_data.txt");
+		gen_zipf(tuples, alphabet_size, zipf_factor, zipf_data);
+		printf("zipf data is generated.\n");
+
+		//uint32_t count[NUM]       = {0};
+		for (uint32_t i = 0; i < tuples; i++)
+		{	
+			uint32_t cmp_base = 132;
+			uint32_t cmp_inc  = 132;
+			for (uint32_t j = 0; j < NUM; j++)
 			{
-				count[j]++;
+				if (zipf_data[i] < cmp_base)
+				{
+					count[j]++;
+				}
+				cmp_base       += cmp_inc;
 			}
-			cmp_base       += cmp_inc;
+			if (myfile.is_open())
+				myfile << zipf_data[i] << '\n';
 		}
-		if (myfile.is_open())
-			myfile << zipf_data[i] << '\n';
 	}
+	else
+	{
+    	ifstream myfile;
+    	myfile.open("skew_data.txt");	
+    	printf("Read the data from the file skew_data.txt\n");
+		//uint32_t count[NUM]       = {0};
+		for (uint32_t i = 0; i < tuples; i++)
+		{	
+			myfile >> zipf_data[i];
+
+			uint32_t cmp_base = 132;
+			uint32_t cmp_inc  = 132;
+			for (uint32_t j = 0; j < NUM; j++)
+			{
+				if (zipf_data[i] < cmp_base)
+				{
+					count[j]++;
+				}
+				cmp_base       += cmp_inc;
+			}
+		}		
+	}
+
 	//printf the cdf...
 	uint32_t cmp_base = 132;
 	uint32_t cmp_inc  = 132;
