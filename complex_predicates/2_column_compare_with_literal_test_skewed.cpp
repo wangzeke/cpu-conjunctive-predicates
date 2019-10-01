@@ -43,6 +43,7 @@
 #include "2_column_compare_with_literal.h" 
 #include "genzipf.h"
 
+using namespace std;
 
 //#include 	"byteslice_column_block.h"
 //
@@ -184,7 +185,7 @@ void *run(void *arg)
             return NULL;
          }		
    }
-
+/*
 	double    zipf_factor    = 1.0;
     uint32_t  alphabet_size  = 131072;
 
@@ -192,8 +193,9 @@ void *run(void *arg)
 	gen_zipf(T1_len_aligned, alphabet_size, zipf_factor, zipf_data);
 	
 	printf("zipf data is generated.\n");
-
-   
+*/
+    	ifstream myfile;
+    	myfile.open("skew_data.txt");	   
    //assign random value for two columns....
    for(i=0; i < T1_len; i++)
    {
@@ -201,7 +203,8 @@ void *run(void *arg)
       original_1[i]  = tmp_1; //
       SetTuple(data_1,  i, tmp_1,  kNumBytesPerCode_1, kNumPaddingBits_1);
 
-      uint32_t tmp_2 = zipf_data[i]; //tmp_cons; //rand32_next(gen) >> (32 - bits);
+      uint32_t tmp_2;
+      myfile >> tmp_2;//uint32_t tmp_2 = zipf_data[i]; //tmp_cons; //rand32_next(gen) >> (32 - bits);
       original_2[i]  = tmp_2; //	  
       SetTuple(data_2,  i, tmp_2,  kNumBytesPerCode_2, kNumPaddingBits_2);
    }
@@ -215,7 +218,7 @@ void *run(void *arg)
 		uint32_t cmp_inc  = 132;
 		for (uint32_t j = 0; j < NUM; j++)
 		{
-			if (zipf_data[i] < cmp_base)
+			if (original_2[i] < cmp_base)
 			{
 				count[j]++;
 			}
@@ -231,7 +234,7 @@ void *run(void *arg)
         cmp_base += cmp_inc;
     }
 
-    free(zipf_data); 
+    //free(zipf_data); 
 
 
    for(i=0; i < T1_len_aligned/64; i++)
