@@ -5,10 +5,10 @@
 CC=icc
 OPT=  -O3 -pthread -fPIC -fopenmp -std=c++11 -lrt
 #-std=c++0x  -std=gnu++11 
-COMMONTOOL = thread_tool.o rand_tool.o file_tool.o cpu_mapping.o huge_page.o memory_tool.o libpcm_2_11.a
+COMMONTOOL = thread_tool.o rand_tool.o file_tool.o cpu_mapping.o huge_page.o memory_tool.o genzipf.o libpcm_2_11.a
 
 
-all: Q19.x Q17.x Q10.x Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x 4_column_compare_full_width.x
+all: 2_column_compare_with_literal_test_skewed.x genzipf_test.x Q19.x Q17.x Q10.x Q14.x Q15.x Q1.x Q12.x Q8.x Q7.x Q6.x Q5.x Q3.x impact_of_branch_on_cpu.x impact_of_prefetcher_tlb.x column_compare_with_literal_test.x 2_column_compare_with_literal_test.x 3_column_compare_with_literal_test.x 4_column_compare_with_literal_test.x 5_column_compare_with_literal_test.x
  
 #####################common functions##########################################
 rand_tool.o: rand_tool.cpp   
@@ -25,10 +25,13 @@ cpu_mapping.o: cpu_mapping.cpp
 #	$(CC) $(OPT) -c perf_counters.cpp
 memory_tool.o: memory_tool.cpp   
 	$(CC) $(OPT) -c memory_tool.cpp
+genzipf.o: genzipf.cpp   
+	$(CC) $(OPT) -c genzipf.cpp
 #########################end of common functions################################
 
-4_column_compare_full_width.x: 4_column_compare_full_width.cpp avx-utility-128.h types_simd.h $(COMMONTOOL) common_tool.h 
-	$(CC) $(OPT) 4_column_compare_full_width.cpp -o 4_column_compare_full_width.x $(COMMONTOOL)
+genzipf_test.x: genzipf_test.cpp $(COMMONTOOL) genzipf.h 
+	$(CC) $(OPT) genzipf_test.cpp -o genzipf_test.x $(COMMONTOOL)
+
 
 # check the impact of hardware prefetcher, branch and PCM. Also the one column case.
 impact_of_branch_on_cpu.x: impact_of_branch_on_cpu.cpp avx-utility.h types.h $(COMMONTOOL) common_tool.h 
@@ -54,6 +57,8 @@ column_compare_with_literal_test.x: column_compare_with_literal_test.cpp avx-uti
 	$(CC) $(OPT) -c 2_column_compare_with_literal.cpp
 2_column_compare_with_literal_test.x: 2_column_compare_with_literal_test.cpp avx-utility.h types.h $(COMMONTOOL) common_tool.h 2_column_compare_with_literal.o 
 	$(CC) $(OPT) 2_column_compare_with_literal_test.cpp -o 2_column_compare_with_literal_test.x $(COMMONTOOL) 2_column_compare_with_literal.o
+2_column_compare_with_literal_test_skewed.x: 2_column_compare_with_literal_test_skewed.cpp avx-utility.h types.h $(COMMONTOOL) common_tool.h 2_column_compare_with_literal.o 
+	$(CC) $(OPT) 2_column_compare_with_literal_test_skewed.cpp -o 2_column_compare_with_literal_test_skewed.x $(COMMONTOOL) 2_column_compare_with_literal.o
 
 
 # check the case with three columns. 3_column_compare_with_literal.cpp
